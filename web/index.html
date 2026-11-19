@@ -7,26 +7,30 @@
       name="description"
       content="Compare recorded retrieval and answer-generation runs, inspect paired uncertainty, and trace outcomes to each evaluation query."
     />
-    <meta name="theme-color" content="#f5f7f6" />
+    <meta name="theme-color" content="#192b50" />
     <title>RAGBench | Experiment notebook</title>
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23096959'/%3E%3Cpath d='M5 16h22M5 11v10m22-10v10' stroke='white' stroke-width='2'/%3E%3Ccircle cx='17' cy='16' r='4' fill='white'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23192b50'/%3E%3Cpath d='M5 16h22M5 11v10m22-10v10' stroke='%23f3ad7e' stroke-width='2'/%3E%3Ccircle cx='17' cy='16' r='4' fill='%23f3ad7e'/%3E%3C/svg%3E"
     />
     <link rel="stylesheet" href="./style.css" />
     <script type="module" src="./app.mjs"></script>
   </head>
   <body>
     <a class="skip" href="#comparison">Skip to comparison</a>
-    <header>
-      <div class="shell mast">
-        <a class="identity" href="#top"><i class="mark" aria-hidden="true"></i>Experiment notebook</a>
+    <header class="rail">
+      <div class="mast">
+        <a class="identity" href="#top"><i class="mark" aria-hidden="true"></i><span>Experiment notebook</span></a>
         <nav aria-label="Notebook">
-          <a href="#comparison">Compare</a><a href="#queries">Queries</a><a href="#method">Method</a>
+          <a href="#comparison"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M8 4v6m8 4v6" /></svg>Compare runs</a>
+          <a href="#runs"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3v17h17M8 15l4-5 4 2 4-7" /></svg>Quality &amp; latency</a>
+          <a href="#queries"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h16M9 5v14" /></svg>Query explorer</a>
+          <a href="#method"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7" /></svg>Method &amp; evidence</a>
         </nav>
-        <a class="repository" href="https://github.com/Sashankpotluru/RAGBench"
-          >GitHub <span aria-hidden="true">↗</span></a
-        >
+        <div class="rail-foot">
+          <p>Follow a result<br />back to the evidence.</p>
+          <a class="repository" href="https://github.com/Sashankpotluru/RAGBench">View source on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
     </header>
     <main class="shell" id="top">
@@ -49,28 +53,37 @@
             <h2 id="compare-title">Paired comparison</h2>
             <span id="split"></span>
           </div>
-          <div class="controls">
-            <label>Dataset<select id="dataset"></select></label
-            ><label>Track<select id="kind"></select></label
-            ><label>Baseline<select id="baseline"></select></label
-            ><label>Candidate<select id="candidate"></select></label
-            ><label>Metric<select id="metric"></select></label>
-          </div>
-          <div id="effect"></div>
-          <div class="inference">
-            <div id="inference"></div>
-            <div class="gate-controls">
-              <label for="margin">Allowed loss <small>(percentage points)</small></label
-              ><input
-                id="margin"
-                type="number"
-                min="0"
-                max="100"
-                step="any"
-                value="2"
-                aria-describedby="gate-note"
-              /><span id="verdict" role="status"></span>
-              <p id="gate-note">Changing tolerance reclassifies the recorded bounds.</p>
+          <div class="comparison-workspace">
+            <div class="setup">
+              <h3>Experiment settings</h3>
+              <div class="controls">
+                <label>Dataset<select id="dataset"></select></label>
+                <label>Track<select id="kind"></select></label>
+                <label>Baseline<select id="baseline"></select></label>
+                <label>Candidate<select id="candidate"></select></label>
+                <label>Metric<select id="metric"></select></label>
+              </div>
+              <p class="setup-note">Choose two recorded runs to compare on the same evaluation questions.</p>
+            </div>
+            <div class="comparison-result">
+              <div id="effect"></div>
+              <div class="inference">
+                <div id="inference"></div>
+                <div class="gate-controls">
+                  <label for="margin">Allowed loss <small>(percentage points)</small></label>
+                  <input
+                    id="margin"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="any"
+                    value="2"
+                    aria-describedby="gate-note"
+                  />
+                  <span id="verdict" role="status"></span>
+                  <p id="gate-note">Changing tolerance reclassifies the recorded bounds.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
