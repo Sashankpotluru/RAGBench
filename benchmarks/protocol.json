@@ -1,0 +1,57 @@
+{
+  "protocol_version": "ragbench-v1",
+  "corpus_text": "title + newline + text",
+  "lexical_tokens": "Unicode Python re.findall(r'\\w+', text.lower())",
+  "fixed_bm25": {
+    "id": "bm25-fixed",
+    "kind": "bm25",
+    "k1": 1.5,
+    "b": 0.75
+  },
+  "bm25_grid": {
+    "k1": [
+      0.6,
+      1.2,
+      1.8
+    ],
+    "b": [
+      0,
+      0.5,
+      1
+    ]
+  },
+  "rrf_grid": {
+    "dense_weight": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "constant": [
+      10,
+      60
+    ],
+    "candidates_per_side": 100
+  },
+  "dense": {
+    "id": "minilm",
+    "kind": "dense",
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "max_length": 256,
+    "pooling": "attention-mask mean then L2 normalize",
+    "document_batch_size": 16
+  },
+  "timing": {
+    "query_count": 32,
+    "repetitions": 5,
+    "warmup_per_query": 1,
+    "hash_prefix": "ragbench-v1-latency:",
+    "device": "cpu",
+    "threads": 4,
+    "dtype": "float32"
+  },
+  "selection": {
+    "metric": "ndcg@10",
+    "tie": "ascending config ID"
+  },
+  "top_k": 100
+}
