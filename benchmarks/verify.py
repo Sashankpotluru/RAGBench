@@ -10,7 +10,7 @@ from ragbench.io import read_json
 
 from .data import sha256_file
 from .generation import PROTOCOL as ANSWER_PROTOCOL
-from .generation import render
+from .generation import build_prompt
 from .release import ROOT, derive, exact_ids
 
 
@@ -58,14 +58,75 @@ def check_coverage(root, results, inventory):
 
 
 def runtime_check(machine):
-    require(re.fullmatch(r"[0-9a-f]{40}", machine["source_commit"]) is not None, "runtime commit")
+    fields = {
+        "architecture",
+        "device",
+        "dtype",
+        "logical_cpus",
+        "os",
+        "processor",
+        "python",
+        "source_commit",
+        "synchronization",
+        "tokenizers_parallelism",
+        "torch_interop_threads",
+        "torch_threads",
+        "versions",
+    }
+    require(isinstance(machine, dict) and set(machine) == fields, "complete runtime fields")
+    require(
+        all(
+            isinstance(machine[key], str) and machine[key].strip()
+            for key in ["architecture", "os", "processor", "python", "source_commit"]
+        ),
+        "runtime platform fields",
+    )
+    require(
+        re.fullmatch(r"3\.(12|13)\.\d+", machine["python"]) is not None
+        and re.fullmatch(r"[0-9a-f]{40}", machine["source_commit"]) is not None,
+        "runtime identity",
+    )
+    require(
+        all(
+            type(machine[key]) is int and machine[key] > 0
+            for key in ["logical_cpus", "torch_interop_threads", "torch_threads"]
+        ),
+        "runtime thread counts",
+    )
     require(
         machine["device"] == "cpu"
         and machine["dtype"] == "float32"
         and machine["torch_threads"] == 4
-        and machine["logical_cpus"] >= 1,
+        and machine["tokenizers_parallelism"] is False
+        and machine["synchronization"] == "CPU operations synchronous",
         "runtime settings",
     )
+    packages = {
+        "numpy",
+        "rank-bm25",
+        "torch",
+        "transformers",
+        "huggingface-hub",
+        "tokenizers",
+        "safetensors",
+        "pytrec-eval-terrier",
+    }
+    versions = machine["versions"]
+    require(
+        isinstance(versions, dict)
+        and set(versions) == packages
+        and all(
+            isinstance(v, str) and re.fullmatch(r"[0-9]+(?:\.[0-9]+)+(?:[-+.a-zA-Z0-9]+)?", v)
+            for v in versions.values()
+        ),
+        "runtime dependency versions",
+    )
+    locks = dict(
+        line.split("==", 1)
+        for line in (ROOT / "requirements-benchmark.txt").read_text().splitlines()
+        if "==" in line and not line.startswith("#")
+    )
+    require(all(locks.get(pkg) == versions[pkg] for pkg in packages), "runtime dependency pins")
 
 
 def replay_tokenizer(root):
@@ -96,43 +157,33 @@ def audit_answers(folder, root, questions, refs):
     )
 
 
-def audit_prediction(row, question, retrieved, tokenizer):
-    spans = row["spans"]
-    require(
-        isinstance(question, str) and question.strip() and len(spans) <= len(retrieved),
-        "question or span count",
-    )
-    for i, s in enumerate(spans):
-        require(
-            s["docid"] == retrieved[i]
-            and s["rank"] == i + 1
-            and s["start"] == 0
-            and s["end"] == len(s["text"])
-            and 0 < s["end"] <= s["source_chars"]
-            and (i == len(spans) - 1 or s["end"] == s["source_chars"]),
-            "supplied passage boundaries",
-        )
-    texts = [s["text"] for s in spans]
-    prompt = render(question, texts)
-    ids = tokenizer.encode(prompt).ids
-    context = tokenizer.encode("\n\n".join(texts), add_special_tokens=False).ids
+def audit_prediction(row, question, passages, tokenizer):
+    require(isinstance(question, str) and question.strip(), "question")
+
+    def encode(text, *, add_special_tokens=True, **kwargs):
+        result = tokenizer.encode(text, add_special_tokens=add_special_tokens)
+        return {"input_ids": result.ids, "offset_mapping": result.offsets}
+
+    expected = build_prompt(encode, question, passages)
+    same({key: row[key] for key in expected}, expected, "expected prompt and supplied spans")
+    same(row["input_tokens"], len(expected["input_ids"]), "input token count")
     output = row["output_ids"]
-    require(
-        row["prompt"] == prompt
-        and row["input_ids"] == ids
-        and row["input_tokens"] == len(ids) <= 512
-        and row["context_tokens"] == len(context) <= 384,
-        "actual prompt tokens",
-    )
     require(
         isinstance(output, list)
         and all(type(i) is int and 0 <= i < tokenizer.get_vocab_size() for i in output)
+        and type(row["output_tokens"]) is int
         and row["output_tokens"] == len(output)
         and 1 <= len(output) <= 48
         and row["prediction"] == tokenizer.decode(output, skip_special_tokens=True)
         and type(row["latency_ns"]) is int
         and row["latency_ns"] > 0,
         "generation output or latency",
+    )
+    eos = 1  # Pinned FLAN-T5-small generation config.
+    require(
+        eos not in output[:-1]
+        and (output[-1] == eos or len(output) == ANSWER_PROTOCOL["max_new_tokens"]),
+        "greedy stopping condition",
     )
 
 

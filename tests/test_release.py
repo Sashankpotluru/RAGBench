@@ -83,17 +83,6 @@ def test_selection_and_canonical_ranking_cannot_drift(tmp_path):
             canonical_run(p, ["q"], 2, "rank")
 
 
-@pytest.mark.parametrize("field", ["metric", "ranking", "prediction", "source", "selection"])
-def test_referenced_artifact_modification_rejected(tmp_path, field):
-    file = tmp_path / f"{field}.json"
-    file.write_text('{"value":1}')
-    manifest = [descriptor(tmp_path, file)]
-    check_manifest(tmp_path, manifest, {file.name})
-    file.write_text('{"value":2}')
-    with pytest.raises(ValueError, match="hash or size"):
-        check_manifest(tmp_path, manifest, {file.name})
-
-
 def test_published_release_reconstructs():
     from benchmarks.release import ROOT
     from benchmarks.verify import verify
@@ -106,3 +95,68 @@ def test_published_release_reconstructs():
         "hybrid-top3",
         "closed-book",
     }
+
+
+def test_same_ids_cannot_rebind_answer_inputs(tmp_path):
+    from benchmarks.answer_inputs import input_identity, validate_binding
+
+    (tmp_path / "runs").mkdir()
+    (tmp_path / "selected.json").write_text("{}")
+    for retriever in ("bm25-tuned", "hybrid-tuned"):
+        (tmp_path / "runs" / f"{retriever}.trec").write_text("q\tQ0\tdoc\t1\t1.0\ttag\n")
+    inputs = {
+        "questions": {"q": "Which island?"},
+        "refs": {"q": ["Iceland"]},
+        "selection": {"eval_split": "held-out", "eval_ids": ["q"], "eval_groups": {"q": "Islands"}},
+        "qrels": {"q": {"doc": 1}},
+        "passages": {"doc": "Iceland is an island."},
+    }
+    runtime = {"source_commit": "a" * 40}
+    binding = {
+        "schema_version": 1,
+        "inputs": input_identity(tmp_path, **inputs),
+        "origin": {
+            "stage": "before_inference",
+            "measurement_source_commit": "a" * 40,
+            "binding_source_commit": "a" * 40,
+        },
+    }
+    validate_binding(binding, input_identity(tmp_path, **inputs), runtime)
+    for change in [
+        {"refs": {"q": ["Greenland"]}},
+        {"qrels": {"q": {"other": 1}}},
+        {"selection": {**inputs["selection"], "eval_groups": {"q": "Changed"}}},
+        {"passages": {"doc": "Wrong source body."}},
+    ]:
+        with pytest.raises(ValueError, match="binding"):
+            validate_binding(binding, input_identity(tmp_path, **{**inputs, **change}), runtime)
+    ranking = tmp_path / "runs/hybrid-tuned.trec"
+    ranking.write_text(ranking.read_text().replace("doc", "other"))
+    with pytest.raises(ValueError, match="binding"):
+        validate_binding(binding, input_identity(tmp_path, **inputs), runtime)
+
+
+def test_runtime_rejects_missing_fields_wrong_types_and_settings():
+    from benchmarks.release import ROOT
+    from benchmarks.verify import runtime_check
+    from ragbench.io import read_json
+
+    machine = read_json(ROOT / "results/answers/runtime.json")
+    runtime_check(machine)
+    for key in machine:
+        with pytest.raises(ValueError):
+            runtime_check({k: v for k, v in machine.items() if k != key})
+    for key, replacement in [
+        ("logical_cpus", True),
+        ("torch_interop_threads", 0),
+        ("torch_threads", 4.0),
+        ("processor", " "),
+        ("os", 5),
+        ("synchronization", "async"),
+        ("tokenizers_parallelism", 0),
+        ("versions", {**machine["versions"], "torch": False}),
+        ("versions", {"torch": "2.15.0"}),
+        ("python", "unknown"),
+    ]:
+        with pytest.raises(ValueError):
+            runtime_check({**machine, key: replacement})

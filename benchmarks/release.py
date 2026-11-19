@@ -4,6 +4,7 @@ import argparse
 import math
 from itertools import combinations
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 
@@ -12,6 +13,7 @@ from ragbench.evaluation import make_evaluation, reference_digest
 from ragbench.io import read_json, write_json_atomic
 from ragbench.metrics import score_answers
 
+from .answer_inputs import RETRIEVERS, input_identity, validate_binding
 from .data import FILES, SOURCES, sha256_file
 from .generation import CONFIGS, MODEL, PROTOCOL, context_diagnostics
 from .vendor.squad import compute_score as upstream
@@ -60,7 +62,7 @@ def answer_evaluation(refs, groups, rows, config, provenance, split):
 
 def answer_check(refs, rows, evaluation):
     errors = []
-    per_metric = {"exact_match": [], "token_f1": []}
+    per_metric: dict[str, list[float]] = {"exact_match": [], "token_f1": []}
     for q, aliases in refs.items():
         for metric, fn in (
             ("exact_match", upstream.exact_match_score),
@@ -80,7 +82,7 @@ def answer_check(refs, rows, evaluation):
 def comparisons(systems, *, primary):
     """One orientation per unordered pair. Adjust only distinct hypotheses."""
     anchor = next(iter(systems))
-    families = {}
+    families: dict[str, dict[str, dict[str, Any]]] = {}
     for baseline, candidate in combinations(systems, 2):
         for metric in systems[baseline]["means"]:
             result = compare_evaluations(systems[baseline], systems[candidate], metric)
@@ -107,7 +109,7 @@ def derive(root, results):
     from .verify import audit_answers
 
     prefix = results.relative_to(root)
-    release = {
+    release: dict[str, Any] = {
         "schema_version": 1,
         "datasets": {},
         "comparisons": {},
@@ -120,7 +122,7 @@ def derive(root, results):
             "answer_runtime": str(prefix / "answers/runtime.json"),
         },
     }
-    explorer = {
+    explorer: dict[str, Any] = {
         "schema_version": 1,
         "preview_depth": 10,
         "rank_columns": ["docid", "rank", "score", "grade"],
@@ -154,7 +156,7 @@ def derive(root, results):
             "runs": {"retrieval": {}},
         }
         release["datasets"][dataset] = dataset_info
-        queries = {q: {"retrieval": {}} for q in qrels}
+        queries: dict[str, dict[str, Any]] = {q: {"retrieval": {}} for q in qrels}
         explorer["datasets"][dataset] = {"queries": queries}
         raw.update(str(rel / f) for f in data["files"])
         artifacts = data["evaluations"]
@@ -187,14 +189,43 @@ def derive(root, results):
             refs = read_json(folder / "eval-answers.json")
             questions = read_json(folder_a / "questions.json")
             runtime = read_json(folder_a / "runtime.json")
+            bodies = read_json(folder_a / "retrieved-passages.json")
+            selected_docs = {
+                d
+                for system, k in RETRIEVERS.items()
+                for scores in data["rankings"][system].values()
+                for d in list(scores)[:k]
+            }
+            exact_ids(selected_docs, bodies, "retrieved paragraph archive")
+            if not all(isinstance(body, str) and body.strip() for body in bodies.values()):
+                raise ValueError("invalid retrieved paragraph body")
+            binding = read_json(folder_a / "input-binding.json")
+            expected_inputs = input_identity(
+                folder,
+                questions=questions,
+                refs=refs,
+                selection=selected,
+                qrels=qrels,
+                passages=bodies,
+            )
+            validate_binding(binding, expected_inputs, runtime)
             audit_answers(folder_a, root, questions, qrels)
             raw.update(
                 "answers/" + x
-                for x in ["runtime.json", "protocol.json", "questions.json", "failures.json"]
+                for x in [
+                    "runtime.json",
+                    "protocol.json",
+                    "questions.json",
+                    "failures.json",
+                    "retrieved-passages.json",
+                    "input-binding.json",
+                ]
             )
             dataset_info.update(
                 answer_references=path("eval-answers.json"),
                 questions=ap("questions.json"),
+                answer_inputs=ap("input-binding.json"),
+                retrieved_passages=ap("retrieved-passages.json"),
                 answer_crosscheck=ap("crosscheck.json"),
                 generation_protocol=ap("protocol.json"),
             )
@@ -220,6 +251,7 @@ def derive(root, results):
                     "source_commit": runtime["source_commit"],
                     "source_sha256": SOURCES["sources"][FILES[SQUAD]]["sha256"],
                     "model_files": SOURCES["models"][MODEL]["files"],
+                    "input_binding_sha256": sha256_file(folder_a / "input-binding.json"),
                     "predictions_sha256": sha256_file(folder_a / name),
                     "questions_sha256": sha256_file(folder_a / "questions.json"),
                     "retrieval_run_sha256": sha256_file(folder / "runs" / f"{retriever}.trec")
@@ -235,7 +267,7 @@ def derive(root, results):
                 checks[system] = answer_check(refs, rows, evaluation)
                 for q, row in rows.items():
                     ids = list(data["rankings"][retriever][q])[:k] if retriever else []
-                    audit_prediction(row, questions[q], ids, tokenizer)
+                    audit_prediction(row, questions[q], [(d, bodies[d]) for d in ids], tokenizer)
                     queries[q]["answers"][system] = {
                         **{
                             key: row[key]
