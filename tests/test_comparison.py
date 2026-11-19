@@ -150,3 +150,76 @@ def test_gate_includes_exact_lower_margin():
     base = evaluation(dict.fromkeys("ab", 0.02))
     cand = evaluation(dict.fromkeys("ab", 0))
     assert compare_evaluations(base, cand, "token_f1")["gate"] == "pass"
+
+
+def test_twenty_equal_deltas_preserve_margin_and_next_float():
+    import math
+
+    zero = evaluation({str(i): 0 for i in range(20)})
+    for margin_loss, gate in [(0.02, "pass"), (math.nextafter(0.02, 1), "regression")]:
+        base = evaluation({str(i): margin_loss for i in range(20)})
+        result = compare_evaluations(base, zero, "token_f1")
+        assert result["ci95"] == [-margin_loss, -margin_loss]
+        assert result["gate"] == gate
+
+
+def test_sign_flip_cancellation_matches_eight_pattern_oracle():
+    from itertools import product
+    from math import fsum
+
+    from ragbench.metrics import RETRIEVAL_METRICS
+
+    def retrieval(precision):
+        return make_evaluation(
+            kind="retrieval",
+            dataset_id="generic",
+            split_id="s",
+            reference_sha256="0" * 64,
+            per_query={
+                str(i): {**dict.fromkeys(RETRIEVAL_METRICS, 0), "precision@10": p}
+                for i, p in enumerate(precision)
+            },
+        )
+
+    base, cand = retrieval([0, 0, 0.7]), retrieval([0.1, 0.6, 0])
+    deltas = [0.1, 0.6, -0.7]
+    absolutes = [
+        abs(fsum(d * s for d, s in zip(deltas, signs, strict=True)))
+        for signs in product([-1, 1], repeat=3)
+    ]
+    assert len(absolutes) == 8
+    assert all(permuted >= abs(fsum(deltas)) for permuted in absolutes)
+    result = compare_evaluations(base, cand, "precision@10")
+    assert result["p_value"] == result["p_holm"] == 1
+
+
+@pytest.mark.parametrize("kind", ["retrieval", "answers"])
+def test_squad_requires_article_groups_to_compare(kind):
+    from ragbench.metrics import ANSWER_METRICS, RETRIEVAL_METRICS
+
+    columns = ANSWER_METRICS if kind == "answers" else RETRIEVAL_METRICS
+    args = dict(
+        kind=kind,
+        dataset_id="squad-v1.1",
+        split_id="s",
+        reference_sha256="0" * 64,
+        per_query={qid: dict.fromkeys(columns, 0) for qid in ["q1", "q2"]},
+    )
+    ungrouped = make_evaluation(**args)
+    with pytest.raises(ValueError, match="article"):
+        compare_evaluations(ungrouped, ungrouped, columns[0])
+    one_article = make_evaluation(**args, groups={"q1": "A", "q2": "A"})
+    with pytest.raises(ValueError, match="two independent"):
+        compare_evaluations(one_article, one_article, columns[0])
+    two_articles = make_evaluation(**args, groups={"q1": "A", "q2": "B"})
+    assert compare_evaluations(two_articles, two_articles, columns[0])["unit_count"] == 2
+
+
+def test_sign_flip_widely_separated_magnitudes():
+    tiny = 2.0**-900
+    baseline = evaluation({"a": 1, "b": 0, "c": 0})
+    candidate = evaluation({"a": 0, "b": 1, "c": tiny})
+    result = compare_evaluations(baseline, candidate, "token_f1")
+    # Every sign pattern either cancels the unit terms or has magnitude near two.
+    assert result["p_value"] == 1
+    assert result["mean_delta"] == tiny / 3

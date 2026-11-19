@@ -79,3 +79,59 @@ def test_installed_console_outside_checkout(tmp_path):
     result = subprocess.run([console, "--help"], cwd=tmp_path, capture_output=True, text=True)
     assert result.returncode == 0
     assert "compare" in result.stdout
+
+
+def test_answers_missing_key_against_empty_alias_and_squad_comparison(tmp_path, capsys):
+    refs = tmp_path / "refs.json"
+    preds = tmp_path / "preds.json"
+    out = tmp_path / "eval.json"
+    compare_out = tmp_path / "compare.json"
+    refs.write_text('{"missing":["the"], "supplied":["the"]}')
+    preds.write_text('{"supplied":""}')
+    assert (
+        main(
+            [
+                "answers",
+                "--dataset-id",
+                "squad-v1.1",
+                "--split-id",
+                "s",
+                "--references",
+                str(refs),
+                "--predictions",
+                str(preds),
+                "--output",
+                str(out),
+            ]
+        )
+        == 0
+    )
+    assert json.loads(out.read_text())["means"] == {"exact_match": 0.5, "token_f1": 0}
+    assert (
+        main(
+            ["compare", str(out), str(out), "--metric", "exact_match", "--output", str(compare_out)]
+        )
+        == 3
+    )
+    assert "article" in capsys.readouterr().err
+    assert not compare_out.exists()
+
+
+def test_compare_cli_accepts_twenty_equal_losses_at_margin(tmp_path):
+    from ragbench.evaluation import make_evaluation
+
+    paths = []
+    for label, score in [("base", 0.02), ("candidate", 0)]:
+        path = tmp_path / (label + ".json")
+        artifact = make_evaluation(
+            kind="answers",
+            dataset_id="synthetic",
+            split_id="s",
+            reference_sha256="0" * 64,
+            per_query={str(i): {"exact_match": 0, "token_f1": score} for i in range(20)},
+        )
+        path.write_text(json.dumps(artifact))
+        paths.append(str(path))
+    output = tmp_path / "report.json"
+    assert main(["compare", *paths, "--metric", "token_f1", "--output", str(output)]) == 0
+    assert json.loads(output.read_text())["ci95"] == [-0.02, -0.02]

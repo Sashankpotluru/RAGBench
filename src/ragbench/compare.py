@@ -1,6 +1,5 @@
 """Paired percentile bootstrap intervals, sign flips and noninferiority gates."""
 
-import math
 from typing import Any
 
 import numpy as np
@@ -29,14 +28,21 @@ def holm_adjust(pvalues: dict[str, float]) -> dict[str, float]:
 
 def _resample(
     units: dict[str, list[float]], resamples: int, seed: int
-) -> tuple[list[float], float]:
-    ordered = [units[key] for key in sorted(units)]
-    sums = np.array([math.fsum(values) for values in ordered])
-    if not sums.any():
-        return [0.0, 0.0], 1.0
-    sizes = np.array([len(values) for values in ordered])
-    observed = abs(math.fsum(sums))
-    n = len(sums)
+) -> tuple[float, list[float], float]:
+    # Every binary64 delta is an integer divided by a power of two. A common
+    # denominator makes bootstrap totals and sign-flip ties exact even under
+    # cancellation. Use machine integers where every possible draw fits.
+    ratios = [[delta.as_integer_ratio() for delta in units[key]] for key in sorted(units)]
+    denominator = max(d for group in ratios for _, d in group)
+    totals = [sum(n * (denominator // d) for n, d in group) for group in ratios]
+    mean = sum(totals) / (denominator * sum(map(len, ratios)))
+    if not any(totals):
+        return mean, [0.0, 0.0], 1.0
+    n = len(totals)
+    max_draw = max(map(abs, totals)) * n
+    sums = np.array(totals, dtype=np.int64 if max_draw <= np.iinfo(np.int64).max else object)
+    sizes = np.array([len(group) for group in ratios])
+    observed = abs(sum(totals))
     bootstrap_seed, flip_seed = np.random.SeedSequence(seed).spawn(2)
     bootstrap_rng = np.random.Generator(np.random.PCG64(bootstrap_seed))
     flip_rng = np.random.Generator(np.random.PCG64(flip_seed))
@@ -47,17 +53,19 @@ def _resample(
     for start in range(0, resamples, batch):
         count = min(batch, resamples - start)
         picks = bootstrap_rng.integers(0, n, size=(count, n))
-        samples[start : start + count] = sums[picks].sum(axis=1) / sizes[picks].sum(axis=1)
+        sampled_totals = sums[picks].sum(axis=1).tolist()
+        sampled_counts = sizes[picks].sum(axis=1).tolist()
+        # Python integer division rounds the exact rational mean once, even
+        # when the numerator or denominator cannot itself fit in binary64.
+        samples[start : start + count] = [
+            total / (denominator * queries)
+            for total, queries in zip(sampled_totals, sampled_counts, strict=True)
+        ]
         signs = 2 * flip_rng.integers(0, 2, size=(count, n)) - 1
         flipped = np.abs((signs * sums).sum(axis=1))
-        # Include ties when different addition orders differ only by rounding.
-        extreme += int(
-            np.count_nonzero(
-                (flipped >= observed) | np.isclose(flipped, observed, rtol=1e-14, atol=0)
-            )
-        )
+        extreme += int(np.count_nonzero(flipped >= observed))
     low, high = np.percentile(samples, [2.5, 97.5], method="linear")
-    return [float(low), float(high)], (1 + extreme) / (resamples + 1)
+    return mean, [float(low), float(high)], (1 + extreme) / (resamples + 1)
 
 
 def compare_evaluations(
@@ -91,6 +99,8 @@ def compare_evaluations(
     if not 0 <= margin <= 1:
         raise ValueError("margin must be in [0, 1]")
     qids, groups = base["query_ids"], base["groups"]
+    if base["dataset_id"] == "squad-v1.1" and groups is None:
+        raise ValueError("squad-v1.1 comparisons require article groups for every question")
     units: dict[str, list[float]] = {}
     deltas = []
     for qid in qids:
@@ -100,7 +110,7 @@ def compare_evaluations(
         units.setdefault(unit, []).append(delta)
     if len(units) < 2:
         raise ValueError("comparison requires at least two independent resampling units")
-    ci, p = _resample(units, resamples, seed)
+    mean_delta, ci, p = _resample(units, resamples, seed)
     if ci[0] >= -margin:
         gate = "pass"
     elif ci[1] < -margin:
@@ -119,7 +129,7 @@ def compare_evaluations(
         "candidate_sha256": reference_digest(cand),
         "baseline_mean": base["means"][metric],
         "candidate_mean": cand["means"][metric],
-        "mean_delta": math.fsum(deltas) / len(qids),
+        "mean_delta": mean_delta,
         "ci95": ci,
         "interval_scope": "pairwise",
         "resampling_unit": "query" if groups is None else "group",

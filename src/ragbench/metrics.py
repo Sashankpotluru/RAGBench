@@ -80,7 +80,10 @@ def score_answers(
 
     result = {}
     for qid in sorted(references):
-        predicted = _tokens(predictions.get(qid, ""))
+        if qid not in predictions:
+            result[qid] = {"exact_match": 0.0, "token_f1": 0.0}
+            continue
+        predicted = _tokens(predictions[qid])
         counts = Counter(predicted)
         best_em, best_f1 = 0.0, 0.0
         for alias in references[qid]:

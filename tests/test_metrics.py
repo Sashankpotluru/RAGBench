@@ -88,3 +88,11 @@ def test_squad_v11_aliases_repeated_tokens_and_empty():
 def test_invalid_answer_inputs(refs, preds):
     with pytest.raises(ValueError):
         score_answers(refs, preds)
+
+
+def test_missing_prediction_and_explicit_empty_against_empty_normalized_reference():
+    scores = score_answers({"missing": ["the"], "supplied": ["the"]}, {"supplied": ""})
+    assert scores == {
+        "missing": {"exact_match": 0, "token_f1": 0},
+        "supplied": {"exact_match": 1, "token_f1": 0},
+    }
