@@ -92,3 +92,17 @@ def test_referenced_artifact_modification_rejected(tmp_path, field):
     file.write_text('{"value":2}')
     with pytest.raises(ValueError, match="hash or size"):
         check_manifest(tmp_path, manifest, {file.name})
+
+
+def test_published_release_reconstructs():
+    from benchmarks.release import ROOT
+    from benchmarks.verify import verify
+
+    report = verify(ROOT, ROOT / "results")
+    assert report["datasets"]["nfcorpus-beir"]["query_count"] == 323
+    assert report["datasets"]["squad-v1.1"]["query_count"] == 200
+    assert set(report["datasets"]["squad-v1.1"]["runs"]["answers"]) == {
+        "bm25-top1",
+        "hybrid-top3",
+        "closed-book",
+    }
