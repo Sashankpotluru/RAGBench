@@ -134,6 +134,7 @@
     },
     "squad-v1.1": {
       "answer_crosscheck": "results/answers/crosscheck.json",
+      "answer_inputs": "results/answers/input-binding.json",
       "answer_references": "results/retrieval/squad-v1.1/eval-answers.json",
       "development_query_count": 50,
       "document_count": 2067,
@@ -144,6 +145,7 @@
       "questions": "results/answers/questions.json",
       "retrieval_crosscheck": "results/retrieval/squad-v1.1/crosscheck.json",
       "retrieval_references": "results/retrieval/squad-v1.1/eval-qrels.json",
+      "retrieved_passages": "results/answers/retrieved-passages.json",
       "runs": {
         "answers": {
           "bm25-top1": {
@@ -434,24 +436,29 @@
       "sha256": "c6470b903ab9193a77f869bf03554b4f949ffd0476e35288736ec8aa1b891814"
     },
     {
-      "bytes": 36608,
+      "bytes": 36704,
       "path": "results/answers/evaluations/bm25-top1.json",
-      "sha256": "14bc4bf65603f001c8d1029ac257ded9fe814e3270c6a4d8ec9d2baa92cec829"
+      "sha256": "bdf644f4d3bceebc793e743333223a7e4b7a03e5690b2ab586db8df4a4d496ab"
     },
     {
-      "bytes": 36418,
+      "bytes": 36514,
       "path": "results/answers/evaluations/closed-book.json",
-      "sha256": "c4ab1a3dbd6d1fd1ce2f1fa84acbf226b2bd4bd3ad935985c73e326921041628"
+      "sha256": "ccc9df0b6fd2ea560287023dd0eab1fdacdca61210b69a4c5d18e732041e973f"
     },
     {
-      "bytes": 36670,
+      "bytes": 36766,
       "path": "results/answers/evaluations/hybrid-top3.json",
-      "sha256": "d27e4f6933c13602e44ce7027e243e8a3a853910e7e5a34f775a802223188022"
+      "sha256": "c57b9685df26b5a0d6ed062adc9ffe43c3b2861e877d52119ba463dc52ac41cd"
     },
     {
       "bytes": 3,
       "path": "results/answers/failures.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "bytes": 1346,
+      "path": "results/answers/input-binding.json",
+      "sha256": "0c8b95b457a68ad32fd636648d03b17ec212570c2c0fad9d129f2642617975f2"
     },
     {
       "bytes": 900424,
@@ -479,6 +486,11 @@
       "sha256": "e25f7d4763d449cc3e8636f2c6bd88421889abf363b6d71b1875c50503e8ef35"
     },
     {
+      "bytes": 396229,
+      "path": "results/answers/retrieved-passages.json",
+      "sha256": "23a1f868b0c420b29a8b8eaace9fb059cf3e83bddd663b7cd7257bb503d9ad51"
+    },
+    {
       "bytes": 619,
       "path": "results/answers/runtime.json",
       "sha256": "486f81673979ae7c7e26dd95c51cbcbfddf76484ccb76fbe1dfea0dd508252b2"
@@ -491,7 +503,7 @@
     {
       "bytes": 6837,
       "path": "results/comparisons/squad-v1.1-answers.json",
-      "sha256": "73345bc689ba0d065e8669b557a378bf0e9ed2ad497574c041d1a8ca20d0d516"
+      "sha256": "f5c1539bbeef1f434520e0a81b29cea991d5e4bfc56f1b879b1febd4a4b18d04"
     },
     {
       "bytes": 40280,

@@ -3,10 +3,10 @@
     "analysis": "exploratory",
     "baseline": "closed-book",
     "baseline_mean": 0.0,
-    "baseline_sha256": "850cd65d38c7294fa960be9041b7f90aaa2682cdf28c9ca2c0b504f406c240e3",
+    "baseline_sha256": "21841ca35aaaf76cfdf79ca6391e7c826e3d04232bd22cd5cc8a197fe41d3522",
     "candidate": "bm25-top1",
     "candidate_mean": 0.55,
-    "candidate_sha256": "bb9e92121cd745f41d51b41572f61453a5ddc66a7d8680c07bc7e1258ca29bb0",
+    "candidate_sha256": "8d4ae4ab1aeb2b1153e46d010dad842ebeba266feeb1993b6660bea83984b73f",
     "ci95": [
       0.47524478967233735,
       0.6181837042625424
@@ -39,10 +39,10 @@
     "analysis": "exploratory",
     "baseline": "closed-book",
     "baseline_mean": 0.0,
-    "baseline_sha256": "850cd65d38c7294fa960be9041b7f90aaa2682cdf28c9ca2c0b504f406c240e3",
+    "baseline_sha256": "21841ca35aaaf76cfdf79ca6391e7c826e3d04232bd22cd5cc8a197fe41d3522",
     "candidate": "hybrid-top3",
     "candidate_mean": 0.57,
-    "candidate_sha256": "11861187699fda5c0d6759f5a3a266b3c03efd0fd8fd9290e5ee26600378a607",
+    "candidate_sha256": "5b0bebc03cec64a9c36bf32c56d49aefbbeda77e4ce38b9366a21643c694ee4a",
     "ci95": [
       0.489247311827957,
       0.6446700507614214
@@ -75,10 +75,10 @@
     "analysis": "exploratory",
     "baseline": "bm25-top1",
     "baseline_mean": 0.55,
-    "baseline_sha256": "bb9e92121cd745f41d51b41572f61453a5ddc66a7d8680c07bc7e1258ca29bb0",
+    "baseline_sha256": "8d4ae4ab1aeb2b1153e46d010dad842ebeba266feeb1993b6660bea83984b73f",
     "candidate": "hybrid-top3",
     "candidate_mean": 0.57,
-    "candidate_sha256": "11861187699fda5c0d6759f5a3a266b3c03efd0fd8fd9290e5ee26600378a607",
+    "candidate_sha256": "5b0bebc03cec64a9c36bf32c56d49aefbbeda77e4ce38b9366a21643c694ee4a",
     "ci95": [
       -0.033153775322283606,
       0.06829268292682927
@@ -111,10 +111,10 @@
     "analysis": "primary",
     "baseline": "closed-book",
     "baseline_mean": 0.04319790340378575,
-    "baseline_sha256": "850cd65d38c7294fa960be9041b7f90aaa2682cdf28c9ca2c0b504f406c240e3",
+    "baseline_sha256": "21841ca35aaaf76cfdf79ca6391e7c826e3d04232bd22cd5cc8a197fe41d3522",
     "candidate": "bm25-top1",
     "candidate_mean": 0.6472083790392614,
-    "candidate_sha256": "bb9e92121cd745f41d51b41572f61453a5ddc66a7d8680c07bc7e1258ca29bb0",
+    "candidate_sha256": "8d4ae4ab1aeb2b1153e46d010dad842ebeba266feeb1993b6660bea83984b73f",
     "ci95": [
       0.5336496781681966,
       0.6712206921921726
@@ -147,10 +147,10 @@
     "analysis": "primary",
     "baseline": "closed-book",
     "baseline_mean": 0.04319790340378575,
-    "baseline_sha256": "850cd65d38c7294fa960be9041b7f90aaa2682cdf28c9ca2c0b504f406c240e3",
+    "baseline_sha256": "21841ca35aaaf76cfdf79ca6391e7c826e3d04232bd22cd5cc8a197fe41d3522",
     "candidate": "hybrid-top3",
     "candidate_mean": 0.6719127441186266,
-    "candidate_sha256": "11861187699fda5c0d6759f5a3a266b3c03efd0fd8fd9290e5ee26600378a607",
+    "candidate_sha256": "5b0bebc03cec64a9c36bf32c56d49aefbbeda77e4ce38b9366a21643c694ee4a",
     "ci95": [
       0.5497224083656668,
       0.6986018603821633
@@ -183,10 +183,10 @@
     "analysis": "exploratory",
     "baseline": "bm25-top1",
     "baseline_mean": 0.6472083790392614,
-    "baseline_sha256": "bb9e92121cd745f41d51b41572f61453a5ddc66a7d8680c07bc7e1258ca29bb0",
+    "baseline_sha256": "8d4ae4ab1aeb2b1153e46d010dad842ebeba266feeb1993b6660bea83984b73f",
     "candidate": "hybrid-top3",
     "candidate_mean": 0.6719127441186266,
-    "candidate_sha256": "11861187699fda5c0d6759f5a3a266b3c03efd0fd8fd9290e5ee26600378a607",
+    "candidate_sha256": "5b0bebc03cec64a9c36bf32c56d49aefbbeda77e4ce38b9366a21643c694ee4a",
     "ci95": [
       -0.01838058611542573,
       0.06472655122655122

@@ -1,0 +1,25 @@
+{
+  "inputs": {
+    "aliases_sha256": "e2b5069619c1baaf4f11458ba6cd38a2e4395b2777412f9e7a62e13ded1050c7",
+    "dataset_id": "squad-v1.1",
+    "groups_sha256": "94175d3e1ade675c33bef9cfd01f638a26ccf6567578235f06772da8eeaceaf2",
+    "passages_sha256": "94b046cdd37f74eaedd9d8c335762494cb00291a8017ae2704ed554bb57e73e6",
+    "qrels_sha256": "f87bb6221442d2b2929494955b058cf2b882bece6223c4e168fa9bd790126d38",
+    "query_order_sha256": "368632a1adfdc39ddcbdc132938d5e0fff65754003ed654226d6c576db9f4587",
+    "questions_sha256": "f6a15ed100e0bb77426b90b16e9d390b4dfdc5fadfcce560e59d16d005c87fe7",
+    "rankings_sha256": {
+      "bm25-tuned": "bfa8a8f513023044882a76770fcdbd8ff3696ab5aebad11fb48f3fe3ab3aba72",
+      "hybrid-tuned": "fa9a913c6e8180f9c14f377c32f747761e7b335ff99fea2707874b06532c1176"
+    },
+    "selected_sha256": "8f52f2ca6e7cbc8919978cc37aed628df915b7be492ca15e2f01bb47accd8198",
+    "source_sha256": "95aa6a52d5d6a735563366753ca50492a658031da74f301ac5238b03966972c9",
+    "split_id": "project-hash-v1-eval200"
+  },
+  "origin": {
+    "binding_source_commit": "154bb78643d09366489ec641ed91ea50eac19de2",
+    "measurement_source_commit": "3b94b20c09c59df7638d12ff9f85d654611c5cf1",
+    "original_evidence_commit": "45456f811c230ca438e383a1f3586e40bc83cd74",
+    "stage": "retrospective_source_verification"
+  },
+  "schema_version": 1
+}

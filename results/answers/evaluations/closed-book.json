@@ -1028,6 +1028,7 @@
     }
   },
   "provenance": {
+    "input_binding_sha256": "0c8b95b457a68ad32fd636648d03b17ec212570c2c0fad9d129f2642617975f2",
     "model_files": {
       "config.json": "439aa0fecf5a5546a1def68b1fc45e538e2c94528ce805378daf091e2bf6e4de",
       "generation_config.json": "f5a1c7e2be8092018d8835128987edf0111637dd98e90599cc80310fef75d95a",
