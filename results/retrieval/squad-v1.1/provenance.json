@@ -1,0 +1,14 @@
+{
+  "dataset_id": "squad-v1.1",
+  "document_count": 2067,
+  "document_order_sha256": "03a6b236b839e6a7949beb5884c47b9321e66ac5b5056089a5d3d90e0d480547",
+  "filename": "squad-dev-v1.1.json",
+  "protocol_sha256": "d5bcd32a344f91667cdaf90e297242f1eec13af2b3d9d4d5efa4deced8537c56",
+  "source": {
+    "bytes": 4854279,
+    "md5": "3e85deb501d4e538b6bc56f786231552",
+    "sha256": "95aa6a52d5d6a735563366753ca50492a658031da74f301ac5238b03966972c9",
+    "url": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json"
+  },
+  "source_commit": "7cd8309066b14c050668b800116e1acd8ed63197"
+}

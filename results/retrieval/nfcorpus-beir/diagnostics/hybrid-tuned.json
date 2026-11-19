@@ -1,0 +1,1940 @@
+{
+  "PLAIN-1008": {
+    "first_relevant_rank": null,
+    "positive_judgments": 5,
+    "relevant_in_top100": 0,
+    "top_document": "MED-901"
+  },
+  "PLAIN-1018": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 60,
+    "relevant_in_top100": 8,
+    "top_document": "MED-5091"
+  },
+  "PLAIN-102": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 24,
+    "relevant_in_top100": 4,
+    "top_document": "MED-1548"
+  },
+  "PLAIN-1028": {
+    "first_relevant_rank": 32,
+    "positive_judgments": 1,
+    "relevant_in_top100": 1,
+    "top_document": "MED-3654"
+  },
+  "PLAIN-1039": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 2,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4380"
+  },
+  "PLAIN-1050": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 94,
+    "relevant_in_top100": 5,
+    "top_document": "MED-1097"
+  },
+  "PLAIN-1066": {
+    "first_relevant_rank": null,
+    "positive_judgments": 9,
+    "relevant_in_top100": 0,
+    "top_document": "MED-1097"
+  },
+  "PLAIN-1088": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 5,
+    "relevant_in_top100": 2,
+    "top_document": "MED-2109"
+  },
+  "PLAIN-1098": {
+    "first_relevant_rank": 32,
+    "positive_judgments": 5,
+    "relevant_in_top100": 1,
+    "top_document": "MED-5124"
+  },
+  "PLAIN-1109": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 98,
+    "relevant_in_top100": 26,
+    "top_document": "MED-2650"
+  },
+  "PLAIN-1119": {
+    "first_relevant_rank": null,
+    "positive_judgments": 11,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4438"
+  },
+  "PLAIN-112": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 56,
+    "relevant_in_top100": 5,
+    "top_document": "MED-3380"
+  },
+  "PLAIN-1130": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 1,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4165"
+  },
+  "PLAIN-1141": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 16,
+    "relevant_in_top100": 3,
+    "top_document": "MED-2112"
+  },
+  "PLAIN-1151": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 153,
+    "relevant_in_top100": 33,
+    "top_document": "MED-3306"
+  },
+  "PLAIN-1161": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-3136"
+  },
+  "PLAIN-1172": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 19,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4150"
+  },
+  "PLAIN-1183": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 25,
+    "relevant_in_top100": 6,
+    "top_document": "MED-5331"
+  },
+  "PLAIN-1193": {
+    "first_relevant_rank": 18,
+    "positive_judgments": 18,
+    "relevant_in_top100": 8,
+    "top_document": "MED-1493"
+  },
+  "PLAIN-12": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 30,
+    "relevant_in_top100": 7,
+    "top_document": "MED-2501"
+  },
+  "PLAIN-1203": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 12,
+    "relevant_in_top100": 5,
+    "top_document": "MED-4771"
+  },
+  "PLAIN-1214": {
+    "first_relevant_rank": null,
+    "positive_judgments": 17,
+    "relevant_in_top100": 0,
+    "top_document": "MED-5318"
+  },
+  "PLAIN-1225": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 27,
+    "relevant_in_top100": 14,
+    "top_document": "MED-1674"
+  },
+  "PLAIN-123": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 51,
+    "relevant_in_top100": 7,
+    "top_document": "MED-3483"
+  },
+  "PLAIN-1236": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 5,
+    "relevant_in_top100": 1,
+    "top_document": "MED-1341"
+  },
+  "PLAIN-1249": {
+    "first_relevant_rank": null,
+    "positive_judgments": 4,
+    "relevant_in_top100": 0,
+    "top_document": "MED-1744"
+  },
+  "PLAIN-1262": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 10,
+    "relevant_in_top100": 3,
+    "top_document": "MED-5293"
+  },
+  "PLAIN-1275": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 55,
+    "relevant_in_top100": 14,
+    "top_document": "MED-4712"
+  },
+  "PLAIN-1288": {
+    "first_relevant_rank": 5,
+    "positive_judgments": 196,
+    "relevant_in_top100": 22,
+    "top_document": "MED-3200"
+  },
+  "PLAIN-1299": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 61,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4747"
+  },
+  "PLAIN-1309": {
+    "first_relevant_rank": null,
+    "positive_judgments": 4,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4660"
+  },
+  "PLAIN-1320": {
+    "first_relevant_rank": 19,
+    "positive_judgments": 6,
+    "relevant_in_top100": 3,
+    "top_document": "MED-2112"
+  },
+  "PLAIN-133": {
+    "first_relevant_rank": 8,
+    "positive_judgments": 36,
+    "relevant_in_top100": 2,
+    "top_document": "MED-2513"
+  },
+  "PLAIN-1331": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-3626"
+  },
+  "PLAIN-1342": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 16,
+    "relevant_in_top100": 5,
+    "top_document": "MED-4317"
+  },
+  "PLAIN-1353": {
+    "first_relevant_rank": null,
+    "positive_judgments": 4,
+    "relevant_in_top100": 0,
+    "top_document": "MED-976"
+  },
+  "PLAIN-1363": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 11,
+    "relevant_in_top100": 7,
+    "top_document": "MED-3620"
+  },
+  "PLAIN-1374": {
+    "first_relevant_rank": 18,
+    "positive_judgments": 26,
+    "relevant_in_top100": 7,
+    "top_document": "MED-4322"
+  },
+  "PLAIN-1387": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 12,
+    "relevant_in_top100": 8,
+    "top_document": "MED-3380"
+  },
+  "PLAIN-1398": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 103,
+    "relevant_in_top100": 34,
+    "top_document": "MED-1715"
+  },
+  "PLAIN-1409": {
+    "first_relevant_rank": 10,
+    "positive_judgments": 253,
+    "relevant_in_top100": 19,
+    "top_document": "MED-4602"
+  },
+  "PLAIN-1419": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 65,
+    "relevant_in_top100": 13,
+    "top_document": "MED-4198"
+  },
+  "PLAIN-1429": {
+    "first_relevant_rank": null,
+    "positive_judgments": 6,
+    "relevant_in_top100": 0,
+    "top_document": "MED-5125"
+  },
+  "PLAIN-143": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 51,
+    "relevant_in_top100": 20,
+    "top_document": "MED-3618"
+  },
+  "PLAIN-1441": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 186,
+    "relevant_in_top100": 34,
+    "top_document": "MED-1332"
+  },
+  "PLAIN-1453": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 245,
+    "relevant_in_top100": 32,
+    "top_document": "MED-1208"
+  },
+  "PLAIN-1463": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 24,
+    "relevant_in_top100": 8,
+    "top_document": "MED-2147"
+  },
+  "PLAIN-1473": {
+    "first_relevant_rank": 23,
+    "positive_judgments": 1,
+    "relevant_in_top100": 1,
+    "top_document": "MED-3947"
+  },
+  "PLAIN-1485": {
+    "first_relevant_rank": 38,
+    "positive_judgments": 54,
+    "relevant_in_top100": 2,
+    "top_document": "MED-1041"
+  },
+  "PLAIN-1496": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4714"
+  },
+  "PLAIN-1506": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 15,
+    "relevant_in_top100": 4,
+    "top_document": "MED-2126"
+  },
+  "PLAIN-1516": {
+    "first_relevant_rank": null,
+    "positive_judgments": 2,
+    "relevant_in_top100": 0,
+    "top_document": "MED-5086"
+  },
+  "PLAIN-1527": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 202,
+    "relevant_in_top100": 35,
+    "top_document": "MED-1304"
+  },
+  "PLAIN-153": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 47,
+    "relevant_in_top100": 20,
+    "top_document": "MED-3679"
+  },
+  "PLAIN-1537": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 45,
+    "relevant_in_top100": 8,
+    "top_document": "MED-4880"
+  },
+  "PLAIN-1547": {
+    "first_relevant_rank": 5,
+    "positive_judgments": 6,
+    "relevant_in_top100": 3,
+    "top_document": "MED-2360"
+  },
+  "PLAIN-1557": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 26,
+    "relevant_in_top100": 4,
+    "top_document": "MED-1406"
+  },
+  "PLAIN-1568": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 2,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4150"
+  },
+  "PLAIN-1579": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 5,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4667"
+  },
+  "PLAIN-1590": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 18,
+    "relevant_in_top100": 6,
+    "top_document": "MED-748"
+  },
+  "PLAIN-1601": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 74,
+    "relevant_in_top100": 20,
+    "top_document": "MED-4860"
+  },
+  "PLAIN-1611": {
+    "first_relevant_rank": null,
+    "positive_judgments": 6,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4115"
+  },
+  "PLAIN-1621": {
+    "first_relevant_rank": null,
+    "positive_judgments": 4,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2177"
+  },
+  "PLAIN-1635": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 431,
+    "relevant_in_top100": 65,
+    "top_document": "MED-1223"
+  },
+  "PLAIN-1645": {
+    "first_relevant_rank": 24,
+    "positive_judgments": 6,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4403"
+  },
+  "PLAIN-165": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 36,
+    "relevant_in_top100": 12,
+    "top_document": "MED-4445"
+  },
+  "PLAIN-1656": {
+    "first_relevant_rank": 15,
+    "positive_judgments": 28,
+    "relevant_in_top100": 5,
+    "top_document": "MED-3764"
+  },
+  "PLAIN-1667": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 159,
+    "relevant_in_top100": 33,
+    "top_document": "MED-4830"
+  },
+  "PLAIN-1679": {
+    "first_relevant_rank": 5,
+    "positive_judgments": 1,
+    "relevant_in_top100": 1,
+    "top_document": "MED-5133"
+  },
+  "PLAIN-1690": {
+    "first_relevant_rank": null,
+    "positive_judgments": 4,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2220"
+  },
+  "PLAIN-1700": {
+    "first_relevant_rank": 12,
+    "positive_judgments": 5,
+    "relevant_in_top100": 1,
+    "top_document": "MED-2572"
+  },
+  "PLAIN-1710": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 16,
+    "relevant_in_top100": 15,
+    "top_document": "MED-3178"
+  },
+  "PLAIN-1721": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 31,
+    "relevant_in_top100": 6,
+    "top_document": "MED-1602"
+  },
+  "PLAIN-1731": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 3,
+    "relevant_in_top100": 2,
+    "top_document": "MED-2749"
+  },
+  "PLAIN-1741": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 420,
+    "relevant_in_top100": 57,
+    "top_document": "MED-2597"
+  },
+  "PLAIN-175": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 37,
+    "relevant_in_top100": 4,
+    "top_document": "MED-3818"
+  },
+  "PLAIN-1752": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-3953"
+  },
+  "PLAIN-1762": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 8,
+    "relevant_in_top100": 5,
+    "top_document": "MED-3716"
+  },
+  "PLAIN-1772": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 2,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4727"
+  },
+  "PLAIN-1784": {
+    "first_relevant_rank": null,
+    "positive_judgments": 2,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2700"
+  },
+  "PLAIN-1794": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 2,
+    "relevant_in_top100": 2,
+    "top_document": "MED-5041"
+  },
+  "PLAIN-1805": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 116,
+    "relevant_in_top100": 44,
+    "top_document": "MED-3935"
+  },
+  "PLAIN-1817": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 27,
+    "relevant_in_top100": 8,
+    "top_document": "MED-4284"
+  },
+  "PLAIN-1827": {
+    "first_relevant_rank": null,
+    "positive_judgments": 3,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2004"
+  },
+  "PLAIN-1837": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 196,
+    "relevant_in_top100": 61,
+    "top_document": "MED-1726"
+  },
+  "PLAIN-1847": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 11,
+    "relevant_in_top100": 4,
+    "top_document": "MED-4000"
+  },
+  "PLAIN-1857": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 33,
+    "relevant_in_top100": 6,
+    "top_document": "MED-2988"
+  },
+  "PLAIN-186": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 24,
+    "relevant_in_top100": 2,
+    "top_document": "MED-949"
+  },
+  "PLAIN-1867": {
+    "first_relevant_rank": 24,
+    "positive_judgments": 7,
+    "relevant_in_top100": 3,
+    "top_document": "MED-3499"
+  },
+  "PLAIN-1877": {
+    "first_relevant_rank": 96,
+    "positive_judgments": 36,
+    "relevant_in_top100": 1,
+    "top_document": "MED-1991"
+  },
+  "PLAIN-1887": {
+    "first_relevant_rank": 40,
+    "positive_judgments": 4,
+    "relevant_in_top100": 2,
+    "top_document": "MED-2070"
+  },
+  "PLAIN-1897": {
+    "first_relevant_rank": 7,
+    "positive_judgments": 2,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4186"
+  },
+  "PLAIN-1909": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 463,
+    "relevant_in_top100": 47,
+    "top_document": "MED-4818"
+  },
+  "PLAIN-1919": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 27,
+    "relevant_in_top100": 14,
+    "top_document": "MED-3321"
+  },
+  "PLAIN-1929": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 10,
+    "relevant_in_top100": 4,
+    "top_document": "MED-4685"
+  },
+  "PLAIN-1940": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 12,
+    "relevant_in_top100": 2,
+    "top_document": "MED-3792"
+  },
+  "PLAIN-1950": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 13,
+    "relevant_in_top100": 3,
+    "top_document": "MED-912"
+  },
+  "PLAIN-196": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 69,
+    "relevant_in_top100": 7,
+    "top_document": "MED-3969"
+  },
+  "PLAIN-1962": {
+    "first_relevant_rank": null,
+    "positive_judgments": 13,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2206"
+  },
+  "PLAIN-1972": {
+    "first_relevant_rank": 48,
+    "positive_judgments": 11,
+    "relevant_in_top100": 2,
+    "top_document": "MED-1568"
+  },
+  "PLAIN-1983": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 32,
+    "relevant_in_top100": 17,
+    "top_document": "MED-2134"
+  },
+  "PLAIN-1995": {
+    "first_relevant_rank": 32,
+    "positive_judgments": 11,
+    "relevant_in_top100": 2,
+    "top_document": "MED-1844"
+  },
+  "PLAIN-2": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 24,
+    "relevant_in_top100": 17,
+    "top_document": "MED-2429"
+  },
+  "PLAIN-2009": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 8,
+    "relevant_in_top100": 4,
+    "top_document": "MED-5173"
+  },
+  "PLAIN-2019": {
+    "first_relevant_rank": 24,
+    "positive_judgments": 3,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4654"
+  },
+  "PLAIN-2030": {
+    "first_relevant_rank": 7,
+    "positive_judgments": 6,
+    "relevant_in_top100": 1,
+    "top_document": "MED-2208"
+  },
+  "PLAIN-2040": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 132,
+    "relevant_in_top100": 23,
+    "top_document": "MED-4961"
+  },
+  "PLAIN-2051": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 355,
+    "relevant_in_top100": 37,
+    "top_document": "MED-1556"
+  },
+  "PLAIN-2061": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 410,
+    "relevant_in_top100": 66,
+    "top_document": "MED-3295"
+  },
+  "PLAIN-207": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 55,
+    "relevant_in_top100": 16,
+    "top_document": "MED-5197"
+  },
+  "PLAIN-2071": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 45,
+    "relevant_in_top100": 24,
+    "top_document": "MED-1349"
+  },
+  "PLAIN-2081": {
+    "first_relevant_rank": 5,
+    "positive_judgments": 1,
+    "relevant_in_top100": 1,
+    "top_document": "MED-1378"
+  },
+  "PLAIN-2092": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 10,
+    "relevant_in_top100": 5,
+    "top_document": "MED-1437"
+  },
+  "PLAIN-2102": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 421,
+    "relevant_in_top100": 57,
+    "top_document": "MED-1545"
+  },
+  "PLAIN-2113": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-1182"
+  },
+  "PLAIN-2124": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 17,
+    "relevant_in_top100": 8,
+    "top_document": "MED-1525"
+  },
+  "PLAIN-2134": {
+    "first_relevant_rank": null,
+    "positive_judgments": 12,
+    "relevant_in_top100": 0,
+    "top_document": "MED-3486"
+  },
+  "PLAIN-2145": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 9,
+    "relevant_in_top100": 2,
+    "top_document": "MED-743"
+  },
+  "PLAIN-2156": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 6,
+    "relevant_in_top100": 5,
+    "top_document": "MED-4868"
+  },
+  "PLAIN-2167": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2488"
+  },
+  "PLAIN-217": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 36,
+    "relevant_in_top100": 9,
+    "top_document": "MED-4831"
+  },
+  "PLAIN-2177": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 24,
+    "relevant_in_top100": 6,
+    "top_document": "MED-1185"
+  },
+  "PLAIN-2187": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 9,
+    "relevant_in_top100": 6,
+    "top_document": "MED-1248"
+  },
+  "PLAIN-2197": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 58,
+    "relevant_in_top100": 17,
+    "top_document": "MED-5054"
+  },
+  "PLAIN-2209": {
+    "first_relevant_rank": null,
+    "positive_judgments": 2,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4236"
+  },
+  "PLAIN-2220": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 9,
+    "relevant_in_top100": 3,
+    "top_document": "MED-4816"
+  },
+  "PLAIN-2230": {
+    "first_relevant_rank": null,
+    "positive_judgments": 7,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4872"
+  },
+  "PLAIN-2240": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 11,
+    "relevant_in_top100": 5,
+    "top_document": "MED-3969"
+  },
+  "PLAIN-2250": {
+    "first_relevant_rank": 7,
+    "positive_judgments": 2,
+    "relevant_in_top100": 2,
+    "top_document": "MED-2346"
+  },
+  "PLAIN-2261": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 60,
+    "relevant_in_top100": 11,
+    "top_document": "MED-3599"
+  },
+  "PLAIN-227": {
+    "first_relevant_rank": 41,
+    "positive_judgments": 40,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4830"
+  },
+  "PLAIN-2271": {
+    "first_relevant_rank": 70,
+    "positive_judgments": 10,
+    "relevant_in_top100": 1,
+    "top_document": "MED-2360"
+  },
+  "PLAIN-2281": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2274"
+  },
+  "PLAIN-2291": {
+    "first_relevant_rank": 25,
+    "positive_judgments": 5,
+    "relevant_in_top100": 2,
+    "top_document": "MED-5063"
+  },
+  "PLAIN-23": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 90,
+    "relevant_in_top100": 9,
+    "top_document": "MED-2658"
+  },
+  "PLAIN-2301": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 13,
+    "relevant_in_top100": 6,
+    "top_document": "MED-4160"
+  },
+  "PLAIN-2311": {
+    "first_relevant_rank": null,
+    "positive_judgments": 2,
+    "relevant_in_top100": 0,
+    "top_document": "MED-1016"
+  },
+  "PLAIN-2321": {
+    "first_relevant_rank": 43,
+    "positive_judgments": 5,
+    "relevant_in_top100": 1,
+    "top_document": "MED-2991"
+  },
+  "PLAIN-2332": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 97,
+    "relevant_in_top100": 32,
+    "top_document": "MED-4766"
+  },
+  "PLAIN-2343": {
+    "first_relevant_rank": null,
+    "positive_judgments": 2,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4872"
+  },
+  "PLAIN-2354": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 5,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4302"
+  },
+  "PLAIN-2364": {
+    "first_relevant_rank": null,
+    "positive_judgments": 15,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2721"
+  },
+  "PLAIN-2375": {
+    "first_relevant_rank": null,
+    "positive_judgments": 2,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2572"
+  },
+  "PLAIN-238": {
+    "first_relevant_rank": 26,
+    "positive_judgments": 54,
+    "relevant_in_top100": 3,
+    "top_document": "MED-5104"
+  },
+  "PLAIN-2386": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 19,
+    "relevant_in_top100": 5,
+    "top_document": "MED-2346"
+  },
+  "PLAIN-2396": {
+    "first_relevant_rank": null,
+    "positive_judgments": 18,
+    "relevant_in_top100": 0,
+    "top_document": "MED-761"
+  },
+  "PLAIN-2408": {
+    "first_relevant_rank": 20,
+    "positive_judgments": 5,
+    "relevant_in_top100": 2,
+    "top_document": "MED-1010"
+  },
+  "PLAIN-2430": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 46,
+    "relevant_in_top100": 19,
+    "top_document": "MED-994"
+  },
+  "PLAIN-2440": {
+    "first_relevant_rank": null,
+    "positive_judgments": 21,
+    "relevant_in_top100": 0,
+    "top_document": "MED-1792"
+  },
+  "PLAIN-2450": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 38,
+    "relevant_in_top100": 8,
+    "top_document": "MED-1179"
+  },
+  "PLAIN-2460": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 31,
+    "relevant_in_top100": 13,
+    "top_document": "MED-1063"
+  },
+  "PLAIN-2470": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 73,
+    "relevant_in_top100": 24,
+    "top_document": "MED-1337"
+  },
+  "PLAIN-248": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 31,
+    "relevant_in_top100": 10,
+    "top_document": "MED-4233"
+  },
+  "PLAIN-2480": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 18,
+    "relevant_in_top100": 12,
+    "top_document": "MED-1187"
+  },
+  "PLAIN-2490": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 23,
+    "relevant_in_top100": 8,
+    "top_document": "MED-2112"
+  },
+  "PLAIN-2500": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 7,
+    "relevant_in_top100": 5,
+    "top_document": "MED-1556"
+  },
+  "PLAIN-2510": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 46,
+    "relevant_in_top100": 28,
+    "top_document": "MED-878"
+  },
+  "PLAIN-2520": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 73,
+    "relevant_in_top100": 4,
+    "top_document": "MED-1991"
+  },
+  "PLAIN-2530": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 72,
+    "relevant_in_top100": 20,
+    "top_document": "MED-1804"
+  },
+  "PLAIN-2540": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 21,
+    "relevant_in_top100": 15,
+    "top_document": "MED-1890"
+  },
+  "PLAIN-2550": {
+    "first_relevant_rank": 24,
+    "positive_judgments": 25,
+    "relevant_in_top100": 7,
+    "top_document": "MED-1679"
+  },
+  "PLAIN-2560": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 21,
+    "relevant_in_top100": 12,
+    "top_document": "MED-2055"
+  },
+  "PLAIN-2570": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 40,
+    "relevant_in_top100": 9,
+    "top_document": "MED-2148"
+  },
+  "PLAIN-2580": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 23,
+    "relevant_in_top100": 4,
+    "top_document": "MED-2220"
+  },
+  "PLAIN-259": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 14,
+    "relevant_in_top100": 3,
+    "top_document": "MED-4295"
+  },
+  "PLAIN-2590": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 63,
+    "relevant_in_top100": 7,
+    "top_document": "MED-4163"
+  },
+  "PLAIN-2600": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 10,
+    "relevant_in_top100": 5,
+    "top_document": "MED-2371"
+  },
+  "PLAIN-2610": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 61,
+    "relevant_in_top100": 15,
+    "top_document": "MED-5072"
+  },
+  "PLAIN-2620": {
+    "first_relevant_rank": 6,
+    "positive_judgments": 55,
+    "relevant_in_top100": 11,
+    "top_document": "MED-2435"
+  },
+  "PLAIN-2630": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 48,
+    "relevant_in_top100": 14,
+    "top_document": "MED-2643"
+  },
+  "PLAIN-2640": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 48,
+    "relevant_in_top100": 29,
+    "top_document": "MED-2743"
+  },
+  "PLAIN-2650": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 29,
+    "relevant_in_top100": 11,
+    "top_document": "MED-2800"
+  },
+  "PLAIN-2660": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 27,
+    "relevant_in_top100": 12,
+    "top_document": "MED-5097"
+  },
+  "PLAIN-2670": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 35,
+    "relevant_in_top100": 3,
+    "top_document": "MED-2994"
+  },
+  "PLAIN-2680": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 14,
+    "relevant_in_top100": 6,
+    "top_document": "MED-1961"
+  },
+  "PLAIN-2690": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 43,
+    "relevant_in_top100": 15,
+    "top_document": "MED-3288"
+  },
+  "PLAIN-270": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 52,
+    "relevant_in_top100": 10,
+    "top_document": "MED-4331"
+  },
+  "PLAIN-2700": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 10,
+    "relevant_in_top100": 6,
+    "top_document": "MED-3253"
+  },
+  "PLAIN-2710": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 21,
+    "relevant_in_top100": 6,
+    "top_document": "MED-3380"
+  },
+  "PLAIN-2720": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 36,
+    "relevant_in_top100": 9,
+    "top_document": "MED-2707"
+  },
+  "PLAIN-2730": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 29,
+    "relevant_in_top100": 13,
+    "top_document": "MED-3554"
+  },
+  "PLAIN-2740": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 50,
+    "relevant_in_top100": 13,
+    "top_document": "MED-3627"
+  },
+  "PLAIN-2750": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 59,
+    "relevant_in_top100": 22,
+    "top_document": "MED-3683"
+  },
+  "PLAIN-2760": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 8,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4600"
+  },
+  "PLAIN-2770": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 41,
+    "relevant_in_top100": 22,
+    "top_document": "MED-1825"
+  },
+  "PLAIN-2780": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 22,
+    "relevant_in_top100": 13,
+    "top_document": "MED-3896"
+  },
+  "PLAIN-2790": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 59,
+    "relevant_in_top100": 12,
+    "top_document": "MED-3970"
+  },
+  "PLAIN-280": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 20,
+    "relevant_in_top100": 9,
+    "top_document": "MED-3023"
+  },
+  "PLAIN-2800": {
+    "first_relevant_rank": 6,
+    "positive_judgments": 24,
+    "relevant_in_top100": 3,
+    "top_document": "MED-2235"
+  },
+  "PLAIN-2810": {
+    "first_relevant_rank": 12,
+    "positive_judgments": 8,
+    "relevant_in_top100": 4,
+    "top_document": "MED-1792"
+  },
+  "PLAIN-2820": {
+    "first_relevant_rank": 75,
+    "positive_judgments": 8,
+    "relevant_in_top100": 2,
+    "top_document": "MED-1677"
+  },
+  "PLAIN-2830": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 3,
+    "relevant_in_top100": 3,
+    "top_document": "MED-5054"
+  },
+  "PLAIN-2840": {
+    "first_relevant_rank": 87,
+    "positive_judgments": 17,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4455"
+  },
+  "PLAIN-2850": {
+    "first_relevant_rank": 15,
+    "positive_judgments": 9,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4803"
+  },
+  "PLAIN-2860": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 2,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4185"
+  },
+  "PLAIN-2870": {
+    "first_relevant_rank": 9,
+    "positive_judgments": 5,
+    "relevant_in_top100": 1,
+    "top_document": "MED-2253"
+  },
+  "PLAIN-2880": {
+    "first_relevant_rank": 22,
+    "positive_judgments": 17,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4792"
+  },
+  "PLAIN-2890": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 29,
+    "relevant_in_top100": 1,
+    "top_document": "MED-1533"
+  },
+  "PLAIN-2900": {
+    "first_relevant_rank": 27,
+    "positive_judgments": 12,
+    "relevant_in_top100": 2,
+    "top_document": "MED-3692"
+  },
+  "PLAIN-291": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 13,
+    "relevant_in_top100": 5,
+    "top_document": "MED-4517"
+  },
+  "PLAIN-2910": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 15,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4295"
+  },
+  "PLAIN-2920": {
+    "first_relevant_rank": null,
+    "positive_judgments": 7,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4309"
+  },
+  "PLAIN-2930": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 14,
+    "relevant_in_top100": 4,
+    "top_document": "MED-4325"
+  },
+  "PLAIN-2940": {
+    "first_relevant_rank": 17,
+    "positive_judgments": 22,
+    "relevant_in_top100": 4,
+    "top_document": "MED-3961"
+  },
+  "PLAIN-2950": {
+    "first_relevant_rank": 46,
+    "positive_judgments": 2,
+    "relevant_in_top100": 1,
+    "top_document": "MED-2738"
+  },
+  "PLAIN-2960": {
+    "first_relevant_rank": 20,
+    "positive_judgments": 2,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4371"
+  },
+  "PLAIN-2970": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 9,
+    "relevant_in_top100": 6,
+    "top_document": "MED-4382"
+  },
+  "PLAIN-2981": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 7,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4403"
+  },
+  "PLAIN-2991": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 2,
+    "relevant_in_top100": 1,
+    "top_document": "MED-1663"
+  },
+  "PLAIN-3001": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 2,
+    "relevant_in_top100": 1,
+    "top_document": "MED-3314"
+  },
+  "PLAIN-3014": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-5199"
+  },
+  "PLAIN-3026": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 1,
+    "relevant_in_top100": 1,
+    "top_document": "MED-3157"
+  },
+  "PLAIN-3037": {
+    "first_relevant_rank": 36,
+    "positive_judgments": 4,
+    "relevant_in_top100": 1,
+    "top_document": "MED-5307"
+  },
+  "PLAIN-3053": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 3,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4525"
+  },
+  "PLAIN-3063": {
+    "first_relevant_rank": 34,
+    "positive_judgments": 4,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4712"
+  },
+  "PLAIN-307": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 3,
+    "relevant_in_top100": 3,
+    "top_document": "MED-714"
+  },
+  "PLAIN-3074": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 1,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4555"
+  },
+  "PLAIN-3085": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 2,
+    "relevant_in_top100": 2,
+    "top_document": "MED-714"
+  },
+  "PLAIN-3097": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 4,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4590"
+  },
+  "PLAIN-3116": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2924"
+  },
+  "PLAIN-3131": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 6,
+    "relevant_in_top100": 3,
+    "top_document": "MED-4620"
+  },
+  "PLAIN-3141": {
+    "first_relevant_rank": 12,
+    "positive_judgments": 34,
+    "relevant_in_top100": 4,
+    "top_document": "MED-4160"
+  },
+  "PLAIN-3151": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 18,
+    "relevant_in_top100": 11,
+    "top_document": "MED-4665"
+  },
+  "PLAIN-3161": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 43,
+    "relevant_in_top100": 16,
+    "top_document": "MED-4677"
+  },
+  "PLAIN-3171": {
+    "first_relevant_rank": 8,
+    "positive_judgments": 34,
+    "relevant_in_top100": 5,
+    "top_document": "MED-745"
+  },
+  "PLAIN-3181": {
+    "first_relevant_rank": 24,
+    "positive_judgments": 27,
+    "relevant_in_top100": 4,
+    "top_document": "MED-3942"
+  },
+  "PLAIN-3191": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 16,
+    "relevant_in_top100": 7,
+    "top_document": "MED-4943"
+  },
+  "PLAIN-320": {
+    "first_relevant_rank": 34,
+    "positive_judgments": 42,
+    "relevant_in_top100": 9,
+    "top_document": "MED-2437"
+  },
+  "PLAIN-3201": {
+    "first_relevant_rank": 13,
+    "positive_judgments": 32,
+    "relevant_in_top100": 4,
+    "top_document": "MED-2117"
+  },
+  "PLAIN-3211": {
+    "first_relevant_rank": null,
+    "positive_judgments": 18,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4365"
+  },
+  "PLAIN-3221": {
+    "first_relevant_rank": 5,
+    "positive_judgments": 24,
+    "relevant_in_top100": 4,
+    "top_document": "MED-2212"
+  },
+  "PLAIN-3231": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 8,
+    "relevant_in_top100": 6,
+    "top_document": "MED-1105"
+  },
+  "PLAIN-3241": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 29,
+    "relevant_in_top100": 2,
+    "top_document": "MED-2821"
+  },
+  "PLAIN-3251": {
+    "first_relevant_rank": 16,
+    "positive_judgments": 21,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4247"
+  },
+  "PLAIN-3261": {
+    "first_relevant_rank": 87,
+    "positive_judgments": 13,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4251"
+  },
+  "PLAIN-3271": {
+    "first_relevant_rank": 10,
+    "positive_judgments": 49,
+    "relevant_in_top100": 9,
+    "top_document": "MED-4823"
+  },
+  "PLAIN-3281": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 26,
+    "relevant_in_top100": 11,
+    "top_document": "MED-4909"
+  },
+  "PLAIN-3292": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 7,
+    "relevant_in_top100": 6,
+    "top_document": "MED-2761"
+  },
+  "PLAIN-33": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 32,
+    "relevant_in_top100": 7,
+    "top_document": "MED-5006"
+  },
+  "PLAIN-3302": {
+    "first_relevant_rank": 5,
+    "positive_judgments": 37,
+    "relevant_in_top100": 13,
+    "top_document": "MED-4811"
+  },
+  "PLAIN-3312": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 13,
+    "relevant_in_top100": 12,
+    "top_document": "MED-4360"
+  },
+  "PLAIN-332": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 2,
+    "relevant_in_top100": 1,
+    "top_document": "MED-760"
+  },
+  "PLAIN-3322": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 79,
+    "relevant_in_top100": 11,
+    "top_document": "MED-4714"
+  },
+  "PLAIN-3332": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 14,
+    "relevant_in_top100": 12,
+    "top_document": "MED-4994"
+  },
+  "PLAIN-3342": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 3,
+    "relevant_in_top100": 3,
+    "top_document": "MED-4000"
+  },
+  "PLAIN-3352": {
+    "first_relevant_rank": 59,
+    "positive_judgments": 39,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4603"
+  },
+  "PLAIN-3362": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 11,
+    "relevant_in_top100": 3,
+    "top_document": "MED-5042"
+  },
+  "PLAIN-3372": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 14,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4868"
+  },
+  "PLAIN-3382": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 14,
+    "relevant_in_top100": 9,
+    "top_document": "MED-3381"
+  },
+  "PLAIN-3392": {
+    "first_relevant_rank": 11,
+    "positive_judgments": 23,
+    "relevant_in_top100": 3,
+    "top_document": "MED-1646"
+  },
+  "PLAIN-3402": {
+    "first_relevant_rank": 7,
+    "positive_judgments": 14,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4413"
+  },
+  "PLAIN-3412": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 49,
+    "relevant_in_top100": 12,
+    "top_document": "MED-4682"
+  },
+  "PLAIN-3422": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 31,
+    "relevant_in_top100": 22,
+    "top_document": "MED-2762"
+  },
+  "PLAIN-3432": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 42,
+    "relevant_in_top100": 9,
+    "top_document": "MED-5283"
+  },
+  "PLAIN-344": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 61,
+    "relevant_in_top100": 12,
+    "top_document": "MED-2394"
+  },
+  "PLAIN-3442": {
+    "first_relevant_rank": 36,
+    "positive_judgments": 29,
+    "relevant_in_top100": 2,
+    "top_document": "MED-2201"
+  },
+  "PLAIN-3452": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 17,
+    "relevant_in_top100": 8,
+    "top_document": "MED-1048"
+  },
+  "PLAIN-3462": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 64,
+    "relevant_in_top100": 21,
+    "top_document": "MED-1373"
+  },
+  "PLAIN-3472": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 17,
+    "relevant_in_top100": 7,
+    "top_document": "MED-3755"
+  },
+  "PLAIN-358": {
+    "first_relevant_rank": null,
+    "positive_judgments": 3,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2753"
+  },
+  "PLAIN-371": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 2,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4620"
+  },
+  "PLAIN-383": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 5,
+    "relevant_in_top100": 1,
+    "top_document": "MED-1479"
+  },
+  "PLAIN-395": {
+    "first_relevant_rank": null,
+    "positive_judgments": 3,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2783"
+  },
+  "PLAIN-407": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 3,
+    "relevant_in_top100": 1,
+    "top_document": "MED-906"
+  },
+  "PLAIN-418": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 3,
+    "relevant_in_top100": 3,
+    "top_document": "MED-917"
+  },
+  "PLAIN-430": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 8,
+    "relevant_in_top100": 3,
+    "top_document": "MED-928"
+  },
+  "PLAIN-44": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 58,
+    "relevant_in_top100": 12,
+    "top_document": "MED-2815"
+  },
+  "PLAIN-441": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 5,
+    "relevant_in_top100": 5,
+    "top_document": "MED-942"
+  },
+  "PLAIN-457": {
+    "first_relevant_rank": null,
+    "positive_judgments": 5,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2112"
+  },
+  "PLAIN-468": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 10,
+    "relevant_in_top100": 4,
+    "top_document": "MED-3990"
+  },
+  "PLAIN-478": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-2082"
+  },
+  "PLAIN-488": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 15,
+    "relevant_in_top100": 11,
+    "top_document": "MED-1798"
+  },
+  "PLAIN-499": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 34,
+    "relevant_in_top100": 4,
+    "top_document": "MED-1747"
+  },
+  "PLAIN-510": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 6,
+    "relevant_in_top100": 1,
+    "top_document": "MED-958"
+  },
+  "PLAIN-520": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-1953"
+  },
+  "PLAIN-531": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 308,
+    "relevant_in_top100": 37,
+    "top_document": "MED-3113"
+  },
+  "PLAIN-541": {
+    "first_relevant_rank": 6,
+    "positive_judgments": 6,
+    "relevant_in_top100": 3,
+    "top_document": "MED-4019"
+  },
+  "PLAIN-551": {
+    "first_relevant_rank": null,
+    "positive_judgments": 2,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4860"
+  },
+  "PLAIN-56": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 50,
+    "relevant_in_top100": 14,
+    "top_document": "MED-4384"
+  },
+  "PLAIN-561": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 25,
+    "relevant_in_top100": 7,
+    "top_document": "MED-3180"
+  },
+  "PLAIN-571": {
+    "first_relevant_rank": 4,
+    "positive_judgments": 7,
+    "relevant_in_top100": 2,
+    "top_document": "MED-2345"
+  },
+  "PLAIN-583": {
+    "first_relevant_rank": 44,
+    "positive_judgments": 44,
+    "relevant_in_top100": 1,
+    "top_document": "MED-2022"
+  },
+  "PLAIN-593": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 3,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4402"
+  },
+  "PLAIN-603": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-3769"
+  },
+  "PLAIN-613": {
+    "first_relevant_rank": 7,
+    "positive_judgments": 10,
+    "relevant_in_top100": 1,
+    "top_document": "MED-909"
+  },
+  "PLAIN-623": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 41,
+    "relevant_in_top100": 8,
+    "top_document": "MED-4515"
+  },
+  "PLAIN-634": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 21,
+    "relevant_in_top100": 4,
+    "top_document": "MED-4620"
+  },
+  "PLAIN-645": {
+    "first_relevant_rank": 65,
+    "positive_judgments": 29,
+    "relevant_in_top100": 1,
+    "top_document": "MED-719"
+  },
+  "PLAIN-660": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 475,
+    "relevant_in_top100": 43,
+    "top_document": "MED-4991"
+  },
+  "PLAIN-671": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 1,
+    "relevant_in_top100": 1,
+    "top_document": "MED-4857"
+  },
+  "PLAIN-68": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 55,
+    "relevant_in_top100": 13,
+    "top_document": "MED-2991"
+  },
+  "PLAIN-681": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 1,
+    "relevant_in_top100": 1,
+    "top_document": "MED-5017"
+  },
+  "PLAIN-691": {
+    "first_relevant_rank": null,
+    "positive_judgments": 21,
+    "relevant_in_top100": 0,
+    "top_document": "MED-4909"
+  },
+  "PLAIN-701": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 8,
+    "relevant_in_top100": 4,
+    "top_document": "MED-3720"
+  },
+  "PLAIN-711": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 57,
+    "relevant_in_top100": 12,
+    "top_document": "MED-2077"
+  },
+  "PLAIN-721": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 25,
+    "relevant_in_top100": 20,
+    "top_document": "MED-4876"
+  },
+  "PLAIN-731": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 54,
+    "relevant_in_top100": 22,
+    "top_document": "MED-1337"
+  },
+  "PLAIN-741": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 19,
+    "relevant_in_top100": 8,
+    "top_document": "MED-4236"
+  },
+  "PLAIN-751": {
+    "first_relevant_rank": null,
+    "positive_judgments": 7,
+    "relevant_in_top100": 0,
+    "top_document": "MED-3129"
+  },
+  "PLAIN-761": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 6,
+    "relevant_in_top100": 2,
+    "top_document": "MED-3800"
+  },
+  "PLAIN-771": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 3,
+    "relevant_in_top100": 3,
+    "top_document": "MED-3386"
+  },
+  "PLAIN-78": {
+    "first_relevant_rank": 14,
+    "positive_judgments": 62,
+    "relevant_in_top100": 8,
+    "top_document": "MED-5110"
+  },
+  "PLAIN-782": {
+    "first_relevant_rank": null,
+    "positive_judgments": 2,
+    "relevant_in_top100": 0,
+    "top_document": "MED-1055"
+  },
+  "PLAIN-792": {
+    "first_relevant_rank": 2,
+    "positive_judgments": 6,
+    "relevant_in_top100": 4,
+    "top_document": "MED-729"
+  },
+  "PLAIN-806": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 96,
+    "relevant_in_top100": 19,
+    "top_document": "MED-2519"
+  },
+  "PLAIN-817": {
+    "first_relevant_rank": 57,
+    "positive_judgments": 1,
+    "relevant_in_top100": 1,
+    "top_document": "MED-3462"
+  },
+  "PLAIN-827": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 244,
+    "relevant_in_top100": 48,
+    "top_document": "MED-4060"
+  },
+  "PLAIN-838": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 9,
+    "relevant_in_top100": 7,
+    "top_document": "MED-3502"
+  },
+  "PLAIN-850": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 57,
+    "relevant_in_top100": 17,
+    "top_document": "MED-2064"
+  },
+  "PLAIN-872": {
+    "first_relevant_rank": null,
+    "positive_judgments": 1,
+    "relevant_in_top100": 0,
+    "top_document": "MED-3989"
+  },
+  "PLAIN-882": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 15,
+    "relevant_in_top100": 12,
+    "top_document": "MED-3632"
+  },
+  "PLAIN-892": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 92,
+    "relevant_in_top100": 13,
+    "top_document": "MED-2010"
+  },
+  "PLAIN-902": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 4,
+    "relevant_in_top100": 2,
+    "top_document": "MED-4197"
+  },
+  "PLAIN-91": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 64,
+    "relevant_in_top100": 16,
+    "top_document": "MED-3288"
+  },
+  "PLAIN-913": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 34,
+    "relevant_in_top100": 13,
+    "top_document": "MED-4415"
+  },
+  "PLAIN-924": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 32,
+    "relevant_in_top100": 16,
+    "top_document": "MED-3044"
+  },
+  "PLAIN-934": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 101,
+    "relevant_in_top100": 38,
+    "top_document": "MED-2155"
+  },
+  "PLAIN-946": {
+    "first_relevant_rank": 18,
+    "positive_judgments": 31,
+    "relevant_in_top100": 2,
+    "top_document": "MED-926"
+  },
+  "PLAIN-956": {
+    "first_relevant_rank": 1,
+    "positive_judgments": 206,
+    "relevant_in_top100": 40,
+    "top_document": "MED-2182"
+  },
+  "PLAIN-966": {
+    "first_relevant_rank": 56,
+    "positive_judgments": 3,
+    "relevant_in_top100": 1,
+    "top_document": "MED-2324"
+  },
+  "PLAIN-977": {
+    "first_relevant_rank": 3,
+    "positive_judgments": 3,
+    "relevant_in_top100": 1,
+    "top_document": "MED-2082"
+  },
+  "PLAIN-987": {
+    "first_relevant_rank": 33,
+    "positive_judgments": 3,
+    "relevant_in_top100": 1,
+    "top_document": "MED-1787"
+  },
+  "PLAIN-997": {
+    "first_relevant_rank": null,
+    "positive_judgments": 2,
+    "relevant_in_top100": 0,
+    "top_document": "MED-5331"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "selection": {
+    "metric": "ndcg@10",
+    "tie": "ascending config ID"
+  },
+  "split_id": "project-hash-v1-dev50",
+  "systems": {
+    "bm25-fixed": {
+      "b": 0.75,
+      "id": "bm25-fixed",
+      "k1": 1.5,
+      "kind": "bm25"
+    },
+    "bm25-tuned": {
+      "b": 1,
+      "id": "bm25-k1.2-b1",
+      "k1": 1.2,
+      "kind": "bm25"
+    },
+    "hybrid-tuned": {
+      "candidates_per_side": 100,
+      "constant": 10,
+      "dense": {
+        "document_batch_size": 16,
+        "id": "minilm",
+        "kind": "dense",
+        "max_length": 256,
+        "model": "sentence-transformers/all-MiniLM-L6-v2",
+        "pooling": "attention-mask mean then L2 normalize"
+      },
+      "dense_weight": 0.25,
+      "id": "rrf-w0.25-c10",
+      "kind": "rrf",
+      "sparse": {
+        "b": 1,
+        "id": "bm25-k1.2-b1",
+        "k1": 1.2,
+        "kind": "bm25"
+      }
+    },
+    "minilm": {
+      "document_batch_size": 16,
+      "id": "minilm",
+      "kind": "dense",
+      "max_length": 256,
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "pooling": "attention-mask mean then L2 normalize"
+    }
+  },
+  "tuning_sha256": "5d558afee4ad924d8866b729b9919c72d1b7d371bb5719bc7a1893ab02401dc9"
+}

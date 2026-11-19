@@ -1,0 +1,14 @@
+{
+  "dataset_id": "nfcorpus-beir",
+  "document_count": 3633,
+  "document_order_sha256": "3e539ac6069dd176f349d5980ece467620d666ccf422228e5a532a9964d74d6f",
+  "filename": "nfcorpus.zip",
+  "protocol_sha256": "d5bcd32a344f91667cdaf90e297242f1eec13af2b3d9d4d5efa4deced8537c56",
+  "source": {
+    "bytes": 2448432,
+    "md5": "a89dba18a62ef92f7d323ec890a0d38d",
+    "sha256": "efe5be03f8c5b86a5870102d0599d227c8c6e2484328e68c6522560385671b0b",
+    "url": "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/nfcorpus.zip"
+  },
+  "source_commit": "7cd8309066b14c050668b800116e1acd8ed63197"
+}
