@@ -47,3 +47,39 @@ python -m benchmarks.crosscheck results/retrieval
 ```
 
 The TREC files have six tab-separated columns giving query ID, Q0, document ID, canonical rank, original score and system tag. Development files contain ten ranks per query and evaluation files contain 100. Dataset directories contain `selection.json`, reference JSON, `tuning.json`, `selected.json`, `dev-runs/`, `runs/`, `evaluations/`, `diagnostics/`, `tokenization.json`, `latency.json`, `crosscheck.json` and `provenance.json`. The shared runtime manifest records hardware, versions, threads, dtype and implementation commit.
+
+## Generated SQuAD answers
+
+Generate on the 200 held-out project questions only. Three configurations use Google FLAN-T5-small at revision `0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab`. Closed-book sees only the common instruction and question. BM25 top 1 and hybrid top 3 use the frozen evaluation rankings. Concatenate original paragraph bodies in rank order with two newlines. The prompt consists of “Answer the question with a short phrase.”, an optional “Context:” block, then “Question: {question}” and “Answer:” on separate lines. Gold labels are used after inference. [FLAN-T5-small](https://huggingface.co/google/flan-t5-small/tree/0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab)
+
+Encode the complete prompt with the pinned tokenizer, including EOS. Limit the whole input to 512 tokens and joined context to 384 tokens without special tokens. Retain whole ranked paragraphs until the next one exceeds either allowance. For that paragraph, search tokenizer character boundaries for a fitting original-text prefix and stop. Reject a question if the instruction and complete question alone exceed the full budget. Save actual prompts, encoder token IDs and character spans as half-open Unicode code point offsets into the original paragraph body. Separators count toward the context allowance as tokenized. Closed-book omits the context label entirely.
+
+Use model evaluation mode, synchronous CPU float32, four intra-op threads, greedy decoding, one beam, batch one and at most 48 new tokens. The generated token count excludes the initial decoder start and includes EOS when generated. One authored warmup precedes measurement. Each successful row times a single model.generate call after prompt tokenization and before decoding. Answer latency excludes retrieval. Retrieval and answer timings are separate measurements on one machine. The runner records failures outside a completed release and aborts on any missing response.
+
+Compare normalized EM and bag-of-token F1 against all accepted aliases using the maximum over references independently for each metric. Check every query score and both aggregate means against the preserved SQuAD v1.1 evaluation code with absolute tolerance 1e-12. “Gold passage supplied” means a nonempty supplied excerpt originates from a positively judged paragraph. “Answer string in context” means at least one nonempty, whitespace-stripped, casefolded reference is a literal substring of a single actual excerpt after casefolding. It can match inside another word. Neither indicator measures semantic faithfulness. FLAN-T5 may have seen SQuAD-related material during training. The sampled public validation questions provide no assurance of contamination-free testing. SQuAD excerpts, questions, references and article titles are reproduced and excerpted under CC BY-SA 4.0 with attribution to Rajpurkar et al. [Upstream scorer and license](../benchmarks/vendor/NOTICE.md) · [SQuAD](https://rajpurkar.github.io/SQuAD-explorer/) · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+## Paired comparisons and release checks
+
+For each dataset and task, the primary family compares every alternative to the fixed baseline on nDCG@10 for retrieval or token F1 for answers. Other pairs on the primary metric form their own exploratory family. For each secondary metric, all pairs within dataset and task form a single exploratory family. Holm-adjust the two-sided sign-flip p-values within each family. Each unordered pair appears once per metric with baseline and candidate explicit. To view the opposite direction, swap means and wins/losses, negate the mean difference and transform [L,U] into [−U,−L]. The two-sided p-values and their family stay the same. Apply the tolerance to the displayed interval direction.
+
+Pair by query ID. Resample individual NFCorpus queries and entire SQuAD articles, weighting by sampled query count. Bootstrap uncertainty treats the observed units as exchangeable; sign flips assume exchangeability of paired system labels at those units under the null. Report pairwise percentile intervals and the two-sided Monte Carlo test with plus-one correction, each with 10,000 draws at seed 20261119. These comparisons describe the fixed benchmark and do not establish a random population sample. The declared release gate compares hybrid top 3 against closed-book on SQuAD token F1 with loss tolerance 0.02. Pass requires the lower limit to reach −0.02; regression requires the upper limit below −0.02; other intervals are inconclusive. Passing this gate concerns the allowed loss only. [Statistical contract](evaluation-contract.md)
+
+Full reproduction writes a new local evidence tree; both raw runners refuse to overwrite their original runs. To reuse the retained retrieval stage and run only generation and aggregation, run these commands from a clean checkout with benchmark dependencies installed. Choose a new output tree inside the repository and copy the retained retrieval directory into it.
+
+```sh
+mkdir reproduced-answers
+cp -R results/retrieval reproduced-answers/retrieval
+python scripts/download_data.py --model google/flan-t5-small
+python -m benchmarks.run_answers --retrieval reproduced-answers/retrieval --output reproduced-answers/answers
+python -m benchmarks.release --results reproduced-answers
+python -m benchmarks.verify --results reproduced-answers
+```
+
+Audit the published release from its public, checksummed evidence. Replay reconstructs development choices, rankings, metrics, diagnostics, token IDs, timing summaries, comparisons, gates and explorer rows. This requires neither raw corpora nor neural weights. SHA-256 binds contents and does not establish authorship or attest hardware timings. Training exposure, original source-document text and hardware measurements cannot be independently inferred from hashes. Token IDs permit checking the exact supplied text and decoded predictions. The immutable original dataset digest and declared source bounds support a separate corpus comparison.
+
+```sh
+python -m pip install -e . pytrec-eval-terrier==0.5.11 tokenizers==0.23.3
+python -m benchmarks.verify --gate
+```
+
+The release manifest uses repository-relative paths with byte sizes and SHA-256 for every evidence file, the pinned sources, dependency lock and scoring/tokenizer references. The gate exits 0 for pass, 1 for regression, 2 for inconclusive and 3 for invalid evidence. The explorer includes all evaluation query IDs and top-ten ranking previews with each row's document ID, rank, score and grade, treating an unjudged document as zero gain. Full top-100 rankings are linked for all eight retrieval runs.

@@ -1,0 +1,5 @@
+# Upstream materials
+
+The SQuAD v1.1 scorer is the unmodified script mirrored by Hugging Face Evaluate at revision `a5db2ad54aaeadf15c7aa1f056bc6f7bbeeb7e5f`. The accompanying Apache 2.0 license and exact source hashes are in `squad/LICENSE` and `squad/source.json`. [Scorer](https://github.com/huggingface/evaluate/blob/a5db2ad54aaeadf15c7aa1f056bc6f7bbeeb7e5f/metrics/squad/compute_score.py)
+
+The FLAN-T5-small tokenizer originates from Google at revision `0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab`, licensed under Apache 2.0. The copy here serializes the effective Rust tokenizer after loading the verified snapshot with Transformers 5.23.0. To regenerate it, call `tokenizer.backend_tokenizer.save("flan-tokenizer.json", pretty=False)` on the tokenizer initialized by `benchmarks.generation.Generator`. Its SHA-256 is `170798cc83dec7e6830d51178ea247259a174975383450f7cd1287a491b55004`. This preserves the wrapper's added-token handling for independent token-level replay. Original input hashes are in `benchmarks/sources.json`. [Model](https://huggingface.co/google/flan-t5-small/tree/0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab) · [Apache 2.0 license](squad/LICENSE)
