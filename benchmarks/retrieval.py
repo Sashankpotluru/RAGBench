@@ -2,8 +2,10 @@
 
 import copy
 import re
+import shutil
 import tempfile
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterator, Mapping, Sequence
+from contextlib import contextmanager
 from importlib.metadata import version
 from pathlib import Path
 from typing import Any
@@ -42,7 +44,9 @@ def lexical_tokens(text: str) -> list[str]:
     return re.findall(r"\w+", text.lower())
 
 
-def verified_snapshot(model_id: str, cache_dir: Path, *, offline: bool = True) -> Path:
+@contextmanager
+def verified_model_view(model_id: str, cache_dir: Path, *, offline: bool = True) -> Iterator[Path]:
+    """Yield a private directory containing exactly the manifest files, verified after copying."""
     from huggingface_hub import snapshot_download
 
     info = SOURCES["models"][model_id]
@@ -55,10 +59,15 @@ def verified_snapshot(model_id: str, cache_dir: Path, *, offline: bool = True) -
             local_files_only=offline,
         )
     )
-    for name, digest in info["files"].items():
-        if sha256_file(snapshot / name) != digest:
-            raise ValueError(f"model digest mismatch for {name}")
-    return snapshot
+    with tempfile.TemporaryDirectory(prefix="ragbench-model-") as temporary:
+        view = Path(temporary)
+        for name, digest in info["files"].items():
+            destination = view / name
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(snapshot / name, destination)
+            if sha256_file(destination) != digest:
+                raise ValueError(f"model digest mismatch for {name}")
+        yield view
 
 
 class Encoder:
@@ -66,17 +75,17 @@ class Encoder:
         import torch
         from transformers import AutoModel, AutoTokenizer
 
-        verified_snapshot(MODEL, cache_dir)
-        kwargs = dict(
-            revision=REVISION,
-            cache_dir=cache_dir / "hf",
-            local_files_only=True,
-            trust_remote_code=False,
-        )
-        self.tokenizer = AutoTokenizer.from_pretrained(MODEL, **kwargs)
-        self.model = AutoModel.from_pretrained(
-            MODEL, **kwargs, use_safetensors=True, dtype=torch.float32
-        )
+        with verified_model_view(MODEL, cache_dir) as view:
+            self.tokenizer = AutoTokenizer.from_pretrained(
+                view, local_files_only=True, trust_remote_code=False
+            )
+            self.model = AutoModel.from_pretrained(
+                view,
+                local_files_only=True,
+                trust_remote_code=False,
+                use_safetensors=True,
+                dtype=torch.float32,
+            )
         self.model.to("cpu").eval()
 
     def lengths(self, texts: list[str]) -> list[int]:

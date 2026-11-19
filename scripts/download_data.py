@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from benchmarks.data import FILES, SOURCES, get_source  # noqa: E402
-from benchmarks.retrieval import MODEL, verified_snapshot  # noqa: E402
+from benchmarks.retrieval import MODEL, verified_model_view  # noqa: E402
 
 
 def main() -> None:
@@ -18,8 +18,8 @@ def main() -> None:
     args = parser.parse_args()
     for name in FILES:
         get_source(name, args.cache, offline=args.offline)
-    verified_snapshot(args.model, args.cache, offline=args.offline)
-    print("Verified both dataset sources and pinned model files.")
+    with verified_model_view(args.model, args.cache, offline=args.offline):
+        print("Verified both dataset sources and pinned model files.")
 
 
 if __name__ == "__main__":
