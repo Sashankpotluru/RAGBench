@@ -1,0 +1,23 @@
+---
+title: RAGBench
+---
+flowchart TB
+    A["Pinned sources and models<br/>NFCorpus, SQuAD v1.1, MiniLM, FLAN-T5-small"]
+    B["Select and freeze<br/>Development settings, query IDs and article groups"]
+    C["Record retrieval runs<br/>Ranked document IDs, scores and warm timings"]
+    D["Generate SQuAD answers<br/>Retrieve bodies by rank, save actual spans and outputs"]
+    R["Held-out scoring references<br/>Relevance judgments and accepted human answers"]
+    E["Score and cross-check<br/>Retrieval with trec_eval, answers with SQuAD v1.1"]
+    F["Pair and gate<br/>Bootstrap intervals, Holm p-values and loss tolerance"]
+    G["Verify versioned artifacts<br/>Release manifest, measured runs and query explorer"]
+    H["Publish dashboard<br/>Comparison, latency and query drill-down"]
+    A --> B
+    A --> R
+    B --> C
+    C -->|Ranks only| D
+    C --> E
+    D --> E
+    R -->|Labels| E
+    E --> F
+    F --> G
+    G --> H

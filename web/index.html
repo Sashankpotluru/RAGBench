@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Compare recorded retrieval and answer-generation runs, inspect paired uncertainty, and trace outcomes to each evaluation query."
+    />
+    <meta name="theme-color" content="#f5f7f6" />
+    <title>RAGBench | Experiment notebook</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23096959'/%3E%3Cpath d='M5 16h22M5 11v10m22-10v10' stroke='white' stroke-width='2'/%3E%3Ccircle cx='17' cy='16' r='4' fill='white'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#comparison">Skip to comparison</a>
+    <header>
+      <div class="shell mast">
+        <a class="identity" href="#top"><i class="mark" aria-hidden="true"></i>Experiment notebook</a>
+        <nav aria-label="Notebook">
+          <a href="#comparison">Compare</a><a href="#queries">Queries</a><a href="#method">Method</a>
+        </nav>
+        <a class="repository" href="https://github.com/Sashankpotluru/RAGBench"
+          >GitHub <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </header>
+    <main class="shell" id="top">
+      <div class="intro">
+        <div>
+          <h1>RAGBench</h1>
+          <p>Compare retrieval and generated answers on the same questions.</p>
+        </div>
+        <p class="scope" id="scope"></p>
+      </div>
+      <div id="load" role="status">Loading recorded comparisons…</div>
+      <noscript
+        >Enable JavaScript to explore the runs, or
+        <a href="https://github.com/Sashankpotluru/RAGBench/tree/main/results">read the recorded evidence</a
+        >.</noscript
+      >
+      <div id="notebook" hidden>
+        <section id="comparison" aria-labelledby="compare-title">
+          <div class="section-head">
+            <h2 id="compare-title">Paired comparison</h2>
+            <span id="split"></span>
+          </div>
+          <div class="controls">
+            <label>Dataset<select id="dataset"></select></label
+            ><label>Track<select id="kind"></select></label
+            ><label>Baseline<select id="baseline"></select></label
+            ><label>Candidate<select id="candidate"></select></label
+            ><label>Metric<select id="metric"></select></label>
+          </div>
+          <div id="effect"></div>
+          <div class="inference">
+            <div id="inference"></div>
+            <div class="gate-controls">
+              <label for="margin">Allowed loss <small>(percentage points)</small></label
+              ><input
+                id="margin"
+                type="number"
+                min="0"
+                max="100"
+                step="any"
+                value="2"
+                aria-describedby="gate-note"
+              /><span id="verdict" role="status"></span>
+              <p id="gate-note">Changing tolerance reclassifies the recorded bounds.</p>
+            </div>
+          </div>
+        </section>
+        <section id="runs" aria-labelledby="runs-title">
+          <div class="section-head">
+            <h2 id="runs-title">Quality and latency</h2>
+            <a id="runtime-link">Runtime record</a>
+          </div>
+          <div class="run-grid">
+            <figure>
+              <div id="quality"></div>
+              <figcaption id="quality-note"></figcaption>
+            </figure>
+            <div>
+              <div id="run-table" class="table-scroll"></div>
+              <p id="timing-note" class="note"></p>
+            </div>
+          </div>
+        </section>
+        <section id="queries" aria-labelledby="queries-title">
+          <div class="section-head">
+            <h2 id="queries-title">Query explorer</h2>
+            <span id="query-n"></span>
+          </div>
+          <p>
+            Inspect individual outcomes. The paired comparison above always uses the full evaluation sample.
+          </p>
+          <div id="explorer-status" role="status"></div>
+          <div id="explorer-controls" class="query-controls">
+            <label
+              >Find a query<input id="search" type="search" placeholder="Question, article or ID" /></label
+            ><label
+              >Candidate outcome<select id="filter">
+                <option value="all">All outcomes</option>
+                <option value="changed">Changed scores</option>
+                <option value="win">Wins</option>
+                <option value="tie">Ties</option>
+                <option value="loss">Losses</option>
+              </select></label
+            ><label
+              >Sort by<select id="sort">
+                <option value="id">Query ID</option>
+                <option value="gain">Largest gain</option>
+                <option value="loss">Largest loss</option>
+              </select></label
+            >
+          </div>
+          <div id="query-table" class="table-scroll"></div>
+          <div id="pages" class="pages"></div>
+          <div id="record"></div>
+        </section>
+        <section id="method" aria-labelledby="method-title">
+          <div class="section-head">
+            <h2 id="method-title">Method and evidence</h2>
+            <a href="https://github.com/Sashankpotluru/RAGBench/blob/main/docs/protocol.md"
+              >Read the protocol</a
+            >
+          </div>
+          <div id="method-content"></div>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="shell">
+        <span>RAGBench</span><a href="./site-manifest.json">Public file manifest</a
+        ><a href="https://github.com/Sashankpotluru/RAGBench/blob/main/THIRD_PARTY_NOTICES.md"
+          >Sources and licenses</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

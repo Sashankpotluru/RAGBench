@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="710" viewBox="0 0 960 710" role="img" aria-labelledby="title desc">
+<title id="title">RAGBench</title>
+<desc id="desc">Pinned sources feed development selection and a separate held-out scoring-reference branch. Retrieval ranks select passages for generation. Only the scorer receives held-out judgments and human answers. Paired decisions and versioned outputs feed the dashboard.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#527069"/></marker></defs>
+<style>.t,.s,.title,.edge{font-family:Helvetica,Arial,sans-serif}.title{font-size:32px;font-weight:700;fill:#192e30}.t{font-size:19px;font-weight:700;fill:#192e30}.s{font-size:15px;fill:#415e56}.edge{font-size:14px;fill:#334e46;font-weight:600}.box{fill:#fff;stroke:#afc3ba;stroke-width:1.5}.line{fill:none;stroke:#527069;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="960" height="710" rx="12" fill="#f5f7f6"/>
+<text x="40" y="45" class="title">RAGBench</text>
+<text x="40" y="71" class="s">How a measured run becomes a paired decision</text>
+<g class="line">
+<path d="M429 144h84"/><path d="M40 145H15v243h20"/>
+<path d="M721 181v21H234v17"/><path d="M429 263h84"/>
+<path d="M349 304v23h251v17"/><path d="M742 304v40"/>
+<path d="M429 388h84"/><path d="M720 429v23H234v17"/>
+<path d="M429 512h84"/><path d="M720 553v28"/>
+</g>
+<text class="edge" x="472" y="251" text-anchor="middle">Ranks only</text>
+<text class="edge" x="472" y="376" text-anchor="middle">Labels</text>
+<g><rect class="box" x="40" y="102" width="389" height="79" rx="6"/><text class="t" x="57" y="135">Pinned sources and models</text><text class="s" x="57" y="160">NFCorpus, SQuAD v1.1, MiniLM, FLAN-T5-small</text></g>
+<g><rect class="box" x="518" y="102" width="412" height="79" rx="6"/><text class="t" x="535" y="135">Select and freeze</text><text class="s" x="535" y="160">Development settings, query IDs and article groups</text></g>
+<g><rect class="box" x="40" y="224" width="389" height="80" rx="6"/><text class="t" x="57" y="257">Record retrieval runs</text><text class="s" x="57" y="282">Ranked document IDs, scores and warm timings</text></g>
+<g><rect class="box" x="518" y="224" width="412" height="80" rx="6"/><text class="t" x="535" y="257">Generate SQuAD answers</text><text class="s" x="535" y="282">Retrieve bodies by rank, save actual spans and outputs</text></g>
+<g><rect class="box" x="40" y="349" width="389" height="80" rx="6"/><text class="t" x="57" y="382">Held-out scoring references</text><text class="s" x="57" y="407">Relevance judgments and accepted human answers</text></g>
+<g><rect class="box" x="518" y="349" width="412" height="80" rx="6"/><text class="t" x="535" y="382">Score and cross-check</text><text class="s" x="535" y="407">Retrieval with trec_eval, answers with SQuAD v1.1</text></g>
+<g><rect class="box" x="40" y="474" width="389" height="79" rx="6"/><text class="t" x="57" y="507">Pair and gate</text><text class="s" x="57" y="532">Bootstrap intervals, Holm p-values and loss tolerance</text></g>
+<g><rect class="box" x="518" y="474" width="412" height="79" rx="6"/><text class="t" x="535" y="507">Verify versioned artifacts</text><text class="s" x="535" y="532">Release manifest, measured runs and query explorer</text></g>
+<g><rect x="518" y="586" width="412" height="79" rx="6" fill="#def0e9" stroke="#096959" stroke-width="2"/><text class="t" x="535" y="619">Publish dashboard</text><text class="s" x="535" y="644">Comparison, latency and query drill-down</text></g>
+<text class="s" x="40" y="617">Retrieval covers both datasets.</text><text class="s" x="40" y="641">Answer generation uses the SQuAD project split.</text>
+</svg>
