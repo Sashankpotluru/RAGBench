@@ -1,0 +1,15 @@
+{
+  "batch_size": 1,
+  "device": "cpu",
+  "do_sample": false,
+  "dtype": "float32",
+  "instruction": "Answer the question with a short phrase.",
+  "max_context_tokens": 384,
+  "max_input_tokens": 512,
+  "max_new_tokens": 48,
+  "model": "google/flan-t5-small",
+  "num_beams": 1,
+  "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+  "threads": 4,
+  "timing": "warm batch-one model.generate only; CPU synchronous; excludes prompt construction, retrieval and text decoding"
+}

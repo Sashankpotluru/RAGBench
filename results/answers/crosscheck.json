@@ -1,0 +1,31 @@
+{
+  "systems": {
+    "bm25-top1": {
+      "max_abs_error": 1.1102230246251565e-16,
+      "mean_count": 2,
+      "per_query_count": 400
+    },
+    "closed-book": {
+      "max_abs_error": 5.551115123125783e-17,
+      "mean_count": 2,
+      "per_query_count": 400
+    },
+    "hybrid-top3": {
+      "max_abs_error": 1.1102230246251565e-16,
+      "mean_count": 2,
+      "per_query_count": 400
+    }
+  },
+  "tolerance": 1e-12,
+  "upstream": {
+    "bytes": 3317,
+    "license": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "url": "https://raw.githubusercontent.com/huggingface/evaluate/a5db2ad54aaeadf15c7aa1f056bc6f7bbeeb7e5f/LICENSE"
+    },
+    "revision": "a5db2ad54aaeadf15c7aa1f056bc6f7bbeeb7e5f",
+    "sha256": "6c27d9393600a8e6c665adb2dc2c966ae7c7a70960064eb032711dc58914956a",
+    "url": "https://raw.githubusercontent.com/huggingface/evaluate/a5db2ad54aaeadf15c7aa1f056bc6f7bbeeb7e5f/metrics/squad/compute_score.py"
+  }
+}

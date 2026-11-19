@@ -1,0 +1,883 @@
+{
+  "comparisons": {
+    "nfcorpus-beir": {
+      "retrieval": "results/comparisons/nfcorpus-beir-retrieval.json"
+    },
+    "squad-v1.1": {
+      "answers": "results/comparisons/squad-v1.1-answers.json",
+      "retrieval": "results/comparisons/squad-v1.1-retrieval.json"
+    }
+  },
+  "datasets": {
+    "nfcorpus-beir": {
+      "development_query_count": 324,
+      "document_count": 3633,
+      "latency": "results/retrieval/nfcorpus-beir/latency.json",
+      "provenance": "results/retrieval/nfcorpus-beir/provenance.json",
+      "query_count": 323,
+      "retrieval_crosscheck": "results/retrieval/nfcorpus-beir/crosscheck.json",
+      "retrieval_references": "results/retrieval/nfcorpus-beir/eval-qrels.json",
+      "runs": {
+        "retrieval": {
+          "bm25-fixed": {
+            "config": {
+              "b": 0.75,
+              "id": "bm25-fixed",
+              "k1": 1.5,
+              "kind": "bm25"
+            },
+            "diagnostics": "results/retrieval/nfcorpus-beir/diagnostics/bm25-fixed.json",
+            "evaluation": "results/retrieval/nfcorpus-beir/evaluations/bm25-fixed.json",
+            "latency_sample_count": 160,
+            "means": {
+              "mrr@10": 0.5089709568037741,
+              "ndcg@10": 0.30636006036579616,
+              "precision@10": 0.21826625386996903,
+              "recall@10": 0.15215322723953334,
+              "recall@100": 0.23309332224555457,
+              "recall@5": 0.11504958852884167
+            },
+            "p50_ms": 0.831333,
+            "p95_ms": 2.8126472999999987,
+            "ranking": "results/retrieval/nfcorpus-beir/runs/bm25-fixed.trec"
+          },
+          "bm25-tuned": {
+            "config": {
+              "b": 0,
+              "id": "bm25-k1.8-b0",
+              "k1": 1.8,
+              "kind": "bm25"
+            },
+            "diagnostics": "results/retrieval/nfcorpus-beir/diagnostics/bm25-tuned.json",
+            "evaluation": "results/retrieval/nfcorpus-beir/evaluations/bm25-tuned.json",
+            "latency_sample_count": 160,
+            "means": {
+              "mrr@10": 0.5053147574819401,
+              "ndcg@10": 0.3017877946294243,
+              "precision@10": 0.21331269349845203,
+              "recall@10": 0.14665750175679854,
+              "recall@100": 0.23175100446350427,
+              "recall@5": 0.11508628313979329
+            },
+            "p50_ms": 0.8200415,
+            "p95_ms": 2.7274295,
+            "ranking": "results/retrieval/nfcorpus-beir/runs/bm25-tuned.trec"
+          },
+          "hybrid-tuned": {
+            "config": {
+              "candidates_per_side": 100,
+              "constant": 10,
+              "dense": {
+                "document_batch_size": 16,
+                "id": "minilm",
+                "kind": "dense",
+                "max_length": 256,
+                "model": "sentence-transformers/all-MiniLM-L6-v2",
+                "pooling": "attention-mask mean then L2 normalize"
+              },
+              "dense_weight": 0.75,
+              "id": "rrf-w0.75-c10",
+              "kind": "rrf",
+              "sparse": {
+                "b": 0,
+                "id": "bm25-k1.8-b0",
+                "k1": 1.8,
+                "kind": "bm25"
+              }
+            },
+            "diagnostics": "results/retrieval/nfcorpus-beir/diagnostics/hybrid-tuned.json",
+            "evaluation": "results/retrieval/nfcorpus-beir/evaluations/hybrid-tuned.json",
+            "latency_sample_count": 160,
+            "means": {
+              "mrr@10": 0.5187576785100004,
+              "ndcg@10": 0.32830884543800815,
+              "precision@10": 0.2476780185758514,
+              "recall@10": 0.16305595222222632,
+              "recall@100": 0.31944118887969375,
+              "recall@5": 0.12929034119141683
+            },
+            "p50_ms": 5.130167,
+            "p95_ms": 9.438260399999999,
+            "ranking": "results/retrieval/nfcorpus-beir/runs/hybrid-tuned.trec"
+          },
+          "minilm": {
+            "config": {
+              "document_batch_size": 16,
+              "id": "minilm",
+              "kind": "dense",
+              "max_length": 256,
+              "model": "sentence-transformers/all-MiniLM-L6-v2",
+              "pooling": "attention-mask mean then L2 normalize"
+            },
+            "diagnostics": "results/retrieval/nfcorpus-beir/diagnostics/minilm.json",
+            "evaluation": "results/retrieval/nfcorpus-beir/evaluations/minilm.json",
+            "latency_sample_count": 160,
+            "means": {
+              "mrr@10": 0.5076539387684899,
+              "ndcg@10": 0.31667312754717797,
+              "precision@10": 0.24334365325077398,
+              "recall@10": 0.15498797328057845,
+              "recall@100": 0.3114503860264584,
+              "recall@5": 0.11965315421231895
+            },
+            "p50_ms": 3.0481045,
+            "p95_ms": 3.3295749999999997,
+            "ranking": "results/retrieval/nfcorpus-beir/runs/minilm.trec"
+          }
+        }
+      },
+      "selected": "results/retrieval/nfcorpus-beir/selected.json",
+      "selection": "results/retrieval/nfcorpus-beir/selection.json",
+      "split": "official-test",
+      "tokenization": "results/retrieval/nfcorpus-beir/tokenization.json",
+      "tuning": "results/retrieval/nfcorpus-beir/tuning.json"
+    },
+    "squad-v1.1": {
+      "answer_crosscheck": "results/answers/crosscheck.json",
+      "answer_references": "results/retrieval/squad-v1.1/eval-answers.json",
+      "development_query_count": 50,
+      "document_count": 2067,
+      "generation_protocol": "results/answers/protocol.json",
+      "latency": "results/retrieval/squad-v1.1/latency.json",
+      "provenance": "results/retrieval/squad-v1.1/provenance.json",
+      "query_count": 200,
+      "questions": "results/answers/questions.json",
+      "retrieval_crosscheck": "results/retrieval/squad-v1.1/crosscheck.json",
+      "retrieval_references": "results/retrieval/squad-v1.1/eval-qrels.json",
+      "runs": {
+        "answers": {
+          "bm25-top1": {
+            "answer_string_in_context_count": 152,
+            "config": {
+              "batch_size": 1,
+              "device": "cpu",
+              "do_sample": false,
+              "dtype": "float32",
+              "instruction": "Answer the question with a short phrase.",
+              "max_context_tokens": 384,
+              "max_input_tokens": 512,
+              "max_new_tokens": 48,
+              "model": "google/flan-t5-small",
+              "num_beams": 1,
+              "retriever": "bm25-tuned",
+              "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+              "system": "bm25-top1",
+              "threads": 4,
+              "timing": "warm batch-one model.generate only; CPU synchronous; excludes prompt construction, retrieval and text decoding",
+              "top_k": 1
+            },
+            "evaluation": "results/answers/evaluations/bm25-top1.json",
+            "gold_passage_supplied_count": 149,
+            "latency_sample_count": 200,
+            "mean_context_tokens": 180.97,
+            "mean_input_tokens": 211.535,
+            "mean_output_tokens": 5.75,
+            "means": {
+              "exact_match": 0.55,
+              "token_f1": 0.6472083790392614
+            },
+            "p50_ms": 41.2684585,
+            "p95_ms": 81.6715377999999,
+            "predictions": "results/answers/predictions/bm25-top1.json"
+          },
+          "closed-book": {
+            "answer_string_in_context_count": 0,
+            "config": {
+              "batch_size": 1,
+              "device": "cpu",
+              "do_sample": false,
+              "dtype": "float32",
+              "instruction": "Answer the question with a short phrase.",
+              "max_context_tokens": 384,
+              "max_input_tokens": 512,
+              "max_new_tokens": 48,
+              "model": "google/flan-t5-small",
+              "num_beams": 1,
+              "retriever": null,
+              "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+              "system": "closed-book",
+              "threads": 4,
+              "timing": "warm batch-one model.generate only; CPU synchronous; excludes prompt construction, retrieval and text decoding",
+              "top_k": 0
+            },
+            "evaluation": "results/answers/evaluations/closed-book.json",
+            "gold_passage_supplied_count": 0,
+            "latency_sample_count": 200,
+            "mean_context_tokens": 0.0,
+            "mean_input_tokens": 27.565,
+            "mean_output_tokens": 6.955,
+            "means": {
+              "exact_match": 0.0,
+              "token_f1": 0.04319790340378575
+            },
+            "p50_ms": 30.7465835,
+            "p95_ms": 55.424137849999994,
+            "predictions": "results/answers/predictions/closed-book.json"
+          },
+          "hybrid-top3": {
+            "answer_string_in_context_count": 168,
+            "config": {
+              "batch_size": 1,
+              "device": "cpu",
+              "do_sample": false,
+              "dtype": "float32",
+              "instruction": "Answer the question with a short phrase.",
+              "max_context_tokens": 384,
+              "max_input_tokens": 512,
+              "max_new_tokens": 48,
+              "model": "google/flan-t5-small",
+              "num_beams": 1,
+              "retriever": "hybrid-tuned",
+              "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+              "system": "hybrid-top3",
+              "threads": 4,
+              "timing": "warm batch-one model.generate only; CPU synchronous; excludes prompt construction, retrieval and text decoding",
+              "top_k": 3
+            },
+            "evaluation": "results/answers/evaluations/hybrid-top3.json",
+            "gold_passage_supplied_count": 169,
+            "latency_sample_count": 200,
+            "mean_context_tokens": 376.965,
+            "mean_input_tokens": 407.53,
+            "mean_output_tokens": 5.57,
+            "means": {
+              "exact_match": 0.57,
+              "token_f1": 0.6719127441186266
+            },
+            "p50_ms": 51.568520500000005,
+            "p95_ms": 85.61997949999991,
+            "predictions": "results/answers/predictions/hybrid-top3.json"
+          }
+        },
+        "retrieval": {
+          "bm25-fixed": {
+            "config": {
+              "b": 0.75,
+              "id": "bm25-fixed",
+              "k1": 1.5,
+              "kind": "bm25"
+            },
+            "diagnostics": "results/retrieval/squad-v1.1/diagnostics/bm25-fixed.json",
+            "evaluation": "results/retrieval/squad-v1.1/evaluations/bm25-fixed.json",
+            "latency_sample_count": 160,
+            "means": {
+              "mrr@10": 0.7915694444444444,
+              "ndcg@10": 0.8272195471966594,
+              "precision@10": 0.094,
+              "recall@10": 0.94,
+              "recall@100": 0.975,
+              "recall@5": 0.87
+            },
+            "p50_ms": 1.938604,
+            "p95_ms": 3.0998833499999994,
+            "ranking": "results/retrieval/squad-v1.1/runs/bm25-fixed.trec"
+          },
+          "bm25-tuned": {
+            "config": {
+              "b": 1,
+              "id": "bm25-k1.2-b1",
+              "k1": 1.2,
+              "kind": "bm25"
+            },
+            "diagnostics": "results/retrieval/squad-v1.1/diagnostics/bm25-tuned.json",
+            "evaluation": "results/retrieval/squad-v1.1/evaluations/bm25-tuned.json",
+            "latency_sample_count": 160,
+            "means": {
+              "mrr@10": 0.8044821428571428,
+              "ndcg@10": 0.8368035540250465,
+              "precision@10": 0.094,
+              "recall@10": 0.94,
+              "recall@100": 0.98,
+              "recall@5": 0.87
+            },
+            "p50_ms": 1.959104,
+            "p95_ms": 3.095757699999999,
+            "ranking": "results/retrieval/squad-v1.1/runs/bm25-tuned.trec"
+          },
+          "hybrid-tuned": {
+            "config": {
+              "candidates_per_side": 100,
+              "constant": 10,
+              "dense": {
+                "document_batch_size": 16,
+                "id": "minilm",
+                "kind": "dense",
+                "max_length": 256,
+                "model": "sentence-transformers/all-MiniLM-L6-v2",
+                "pooling": "attention-mask mean then L2 normalize"
+              },
+              "dense_weight": 0.25,
+              "id": "rrf-w0.25-c10",
+              "kind": "rrf",
+              "sparse": {
+                "b": 1,
+                "id": "bm25-k1.2-b1",
+                "k1": 1.2,
+                "kind": "bm25"
+              }
+            },
+            "diagnostics": "results/retrieval/squad-v1.1/diagnostics/hybrid-tuned.json",
+            "evaluation": "results/retrieval/squad-v1.1/evaluations/hybrid-tuned.json",
+            "latency_sample_count": 160,
+            "means": {
+              "mrr@10": 0.8059206349206349,
+              "ndcg@10": 0.8389417250251477,
+              "precision@10": 0.094,
+              "recall@10": 0.94,
+              "recall@100": 0.985,
+              "recall@5": 0.905
+            },
+            "p50_ms": 5.998313,
+            "p95_ms": 7.7403369,
+            "ranking": "results/retrieval/squad-v1.1/runs/hybrid-tuned.trec"
+          },
+          "minilm": {
+            "config": {
+              "document_batch_size": 16,
+              "id": "minilm",
+              "kind": "dense",
+              "max_length": 256,
+              "model": "sentence-transformers/all-MiniLM-L6-v2",
+              "pooling": "attention-mask mean then L2 normalize"
+            },
+            "diagnostics": "results/retrieval/squad-v1.1/diagnostics/minilm.json",
+            "evaluation": "results/retrieval/squad-v1.1/evaluations/minilm.json",
+            "latency_sample_count": 160,
+            "means": {
+              "mrr@10": 0.6779047619047618,
+              "ndcg@10": 0.7274883111633208,
+              "precision@10": 0.0885,
+              "recall@10": 0.885,
+              "recall@100": 0.98,
+              "recall@5": 0.805
+            },
+            "p50_ms": 3.0951874999999998,
+            "p95_ms": 3.3391357,
+            "ranking": "results/retrieval/squad-v1.1/runs/minilm.trec"
+          }
+        }
+      },
+      "selected": "results/retrieval/squad-v1.1/selected.json",
+      "selection": "results/retrieval/squad-v1.1/selection.json",
+      "split": "project-hash-v1-eval200",
+      "tokenization": "results/retrieval/squad-v1.1/tokenization.json",
+      "tuning": "results/retrieval/squad-v1.1/tuning.json"
+    }
+  },
+  "explorer": "results/explorer.json",
+  "gates": [
+    {
+      "baseline": "closed-book",
+      "candidate": "hybrid-top3",
+      "ci95": [
+        0.5497224083656668,
+        0.6986018603821633
+      ],
+      "dataset_id": "squad-v1.1",
+      "family": "squad-v1.1/answers/token_f1/primary",
+      "gate": "pass",
+      "kind": "answers",
+      "margin": 0.02,
+      "metric": "token_f1"
+    }
+  ],
+  "inputs": {
+    "answer_runtime": "results/answers/runtime.json",
+    "dependencies": "requirements-benchmark.txt",
+    "retrieval_runtime": "results/retrieval/runtime.json",
+    "sources": "benchmarks/sources.json"
+  },
+  "manifest": [
+    {
+      "bytes": 1043,
+      "path": "benchmarks/protocol.json",
+      "sha256": "d5bcd32a344f91667cdaf90e297242f1eec13af2b3d9d4d5efa4deced8537c56"
+    },
+    {
+      "bytes": 2457,
+      "path": "benchmarks/sources.json",
+      "sha256": "1444cdd8fc9bd0f8814fbe65a69b4e6cc81673c6c8bba713a2834b1665e9676d"
+    },
+    {
+      "bytes": 1170,
+      "path": "benchmarks/vendor/NOTICE.md",
+      "sha256": "3260eaaef853357e483b2e9de9646ea87e63cf9ebd3f3a1b871c66153c7c1d43"
+    },
+    {
+      "bytes": 1389390,
+      "path": "benchmarks/vendor/flan-tokenizer.json",
+      "sha256": "170798cc83dec7e6830d51178ea247259a174975383450f7cd1287a491b55004"
+    },
+    {
+      "bytes": 11358,
+      "path": "benchmarks/vendor/squad/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "bytes": 3317,
+      "path": "benchmarks/vendor/squad/compute_score.py",
+      "sha256": "6c27d9393600a8e6c665adb2dc2c966ae7c7a70960064eb032711dc58914956a"
+    },
+    {
+      "bytes": 536,
+      "path": "benchmarks/vendor/squad/source.json",
+      "sha256": "546d615d9328329c818e04e94c6328f138d82a7b9f8e60f69ce2013675c42252"
+    },
+    {
+      "bytes": 776,
+      "path": "requirements-benchmark.txt",
+      "sha256": "bf1e053637b68f0a48c9cc8622366d0798b50d348eb1af286559b6e3138ef9ad"
+    },
+    {
+      "bytes": 993,
+      "path": "results/answers/crosscheck.json",
+      "sha256": "c6470b903ab9193a77f869bf03554b4f949ffd0476e35288736ec8aa1b891814"
+    },
+    {
+      "bytes": 36608,
+      "path": "results/answers/evaluations/bm25-top1.json",
+      "sha256": "14bc4bf65603f001c8d1029ac257ded9fe814e3270c6a4d8ec9d2baa92cec829"
+    },
+    {
+      "bytes": 36418,
+      "path": "results/answers/evaluations/closed-book.json",
+      "sha256": "c4ab1a3dbd6d1fd1ce2f1fa84acbf226b2bd4bd3ad935985c73e326921041628"
+    },
+    {
+      "bytes": 36670,
+      "path": "results/answers/evaluations/hybrid-top3.json",
+      "sha256": "d27e4f6933c13602e44ce7027e243e8a3a853910e7e5a34f775a802223188022"
+    },
+    {
+      "bytes": 3,
+      "path": "results/answers/failures.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "bytes": 900424,
+      "path": "results/answers/predictions/bm25-top1.json",
+      "sha256": "06e6ca4ec373bee6ede07c57cd483f3d8a9aa742189d441a6c185c95e03ec32c"
+    },
+    {
+      "bytes": 148993,
+      "path": "results/answers/predictions/closed-book.json",
+      "sha256": "6d5f39240e02e4379783f7a464d7b8e8c31f3aab9be631d1bfbb95fae5dccf46"
+    },
+    {
+      "bytes": 1725352,
+      "path": "results/answers/predictions/hybrid-top3.json",
+      "sha256": "65468be0bdc4f39dac05d91f87b969384ef6dd19fd18391416fbe3dfc5759833"
+    },
+    {
+      "bytes": 479,
+      "path": "results/answers/protocol.json",
+      "sha256": "980fdb2d779e71f105f79c27978d68f982d01373eef1a8a762cbe7b54189d801"
+    },
+    {
+      "bytes": 18599,
+      "path": "results/answers/questions.json",
+      "sha256": "e25f7d4763d449cc3e8636f2c6bd88421889abf363b6d71b1875c50503e8ef35"
+    },
+    {
+      "bytes": 619,
+      "path": "results/answers/runtime.json",
+      "sha256": "486f81673979ae7c7e26dd95c51cbcbfddf76484ccb76fbe1dfea0dd508252b2"
+    },
+    {
+      "bytes": 41769,
+      "path": "results/comparisons/nfcorpus-beir-retrieval.json",
+      "sha256": "54ebc547e27c5bfcf6e7146ceafa29b9955916459f367203cfce19437c5104ac"
+    },
+    {
+      "bytes": 6837,
+      "path": "results/comparisons/squad-v1.1-answers.json",
+      "sha256": "73345bc689ba0d065e8669b557a378bf0e9ed2ad497574c041d1a8ca20d0d516"
+    },
+    {
+      "bytes": 40280,
+      "path": "results/comparisons/squad-v1.1-retrieval.json",
+      "sha256": "796315a287c9730f4a05dbf3320d18f4d124cf7355039b3d1a63c318b0dde280"
+    },
+    {
+      "bytes": 5172043,
+      "path": "results/explorer.json",
+      "sha256": "7187355364575ac5786a3d63561d1475d2dc2b48310b7ede2b4b7f206569ccb6"
+    },
+    {
+      "bytes": 3049,
+      "path": "results/retrieval/nfcorpus-beir/crosscheck.json",
+      "sha256": "8adad8d136a00ec5b83e578e2f079f843ea241af52416fa4078f0c965b1b1392"
+    },
+    {
+      "bytes": 223237,
+      "path": "results/retrieval/nfcorpus-beir/dev-qrels.json",
+      "sha256": "fb4a9237afaa82e17707ab208269fb02d0c4912e7d038f1e4fc581dcaab60ebb"
+    },
+    {
+      "bytes": 179428,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/bm25-k0.6-b0.5.trec",
+      "sha256": "2d9826a7e0ce8d1d77b1c00a745679e444449ae0be17e0492585ecfe688f82c3"
+    },
+    {
+      "bytes": 173046,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/bm25-k0.6-b0.trec",
+      "sha256": "f33ccc3d8f878b273b1eb63cb132f490e0c1d1f1e399ed5d48b6eb779c03b014"
+    },
+    {
+      "bytes": 172962,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/bm25-k0.6-b1.trec",
+      "sha256": "bfcb03e26e890065548484724f5d529180afdd679c4ee7fa0d1777ba779e1a35"
+    },
+    {
+      "bytes": 179640,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/bm25-k1.2-b0.5.trec",
+      "sha256": "c3e0b5a75bec8ae540519a3873c06968d700b8a4c504cba289c66f7772bd3229"
+    },
+    {
+      "bytes": 173211,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/bm25-k1.2-b0.trec",
+      "sha256": "d241b0274dad94f5cd331b0274419e731edac7be3e267ffe4f197e4821d4c295"
+    },
+    {
+      "bytes": 173191,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/bm25-k1.2-b1.trec",
+      "sha256": "7d8f3fea50d7b64c5d9ebdbc4165879a648d284dce34449e854cca87c3c054e1"
+    },
+    {
+      "bytes": 179771,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/bm25-k1.8-b0.5.trec",
+      "sha256": "506950ff4f00122eef36a0a3ada62f5aab39a04d133261616229518c7dcea8b4"
+    },
+    {
+      "bytes": 173315,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/bm25-k1.8-b0.trec",
+      "sha256": "4066571115ba4a9c156d220d6f2863cec12f532a0b21bdd8c8caa030c1bedb0e"
+    },
+    {
+      "bytes": 173401,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/bm25-k1.8-b1.trec",
+      "sha256": "a4aa489909589e4bd38692f39efea214e6da2c4eba18f8e2986b3546a4d58088"
+    },
+    {
+      "bytes": 182760,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/rrf-w0.25-c10.trec",
+      "sha256": "0772d77a0ebd9fc9b67c05e9ec33b27e08cf625496c817d088af166823cadf12"
+    },
+    {
+      "bytes": 191490,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/rrf-w0.25-c60.trec",
+      "sha256": "8ed16126d7d53a9d92f3afb9ff15b8efa0dbd5e3ee94b1b5c31eec21787ccc60"
+    },
+    {
+      "bytes": 186172,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/rrf-w0.5-c10.trec",
+      "sha256": "f5c01dcb9350db7ff2124591aeeac554f2e63c7bc9029bcf5a210cfc0ffd9b10"
+    },
+    {
+      "bytes": 187848,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/rrf-w0.5-c60.trec",
+      "sha256": "43e928962a876fd1ff17a1a6eb476a0dbf88664f3d2c10f8c3e9affea53e5817"
+    },
+    {
+      "bytes": 182348,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/rrf-w0.75-c10.trec",
+      "sha256": "d85a91f921daad7193fb7b1d676d3b95403ed285c8e1d40e4a326c8fcfdef687"
+    },
+    {
+      "bytes": 191318,
+      "path": "results/retrieval/nfcorpus-beir/dev-runs/rrf-w0.75-c60.trec",
+      "sha256": "bff36bf8d51caf491362892f8d98d75e539915fc096a87f246bc7a73347fecba"
+    },
+    {
+      "bytes": 46230,
+      "path": "results/retrieval/nfcorpus-beir/diagnostics/bm25-fixed.json",
+      "sha256": "df4f813c6c2c74d88091def6fb9486e30a32c85e80dee86ba3f3179d021f6520"
+    },
+    {
+      "bytes": 46239,
+      "path": "results/retrieval/nfcorpus-beir/diagnostics/bm25-tuned.json",
+      "sha256": "3170974343d4a43a695f3e2a4b935638899c166acec78e7f138327de2d2e50a2"
+    },
+    {
+      "bytes": 46250,
+      "path": "results/retrieval/nfcorpus-beir/diagnostics/hybrid-tuned.json",
+      "sha256": "41d6a69225d0f50832d6ba6872186b6061e83c5b7ee0e854915c98bebd94c0b0"
+    },
+    {
+      "bytes": 46259,
+      "path": "results/retrieval/nfcorpus-beir/diagnostics/minilm.json",
+      "sha256": "3174b0f371e1586b81e40f35d876d5eafb3259ae8badd214268da6f9ce2c1ad2"
+    },
+    {
+      "bytes": 241246,
+      "path": "results/retrieval/nfcorpus-beir/eval-qrels.json",
+      "sha256": "414884f2242c8d1b564633f4f833477bd714b3f6792aa5a549309cbfbce9ddb5"
+    },
+    {
+      "bytes": 72167,
+      "path": "results/retrieval/nfcorpus-beir/evaluations/bm25-fixed.json",
+      "sha256": "07c54d1eba87f488e2d7efea33b0d1fe2a5aa0e8ac86f4f7673437609417b9db"
+    },
+    {
+      "bytes": 72038,
+      "path": "results/retrieval/nfcorpus-beir/evaluations/bm25-tuned.json",
+      "sha256": "55016195e85097455686b5561203b40758f6d9b1d9ca6847a512f3a20139290c"
+    },
+    {
+      "bytes": 73057,
+      "path": "results/retrieval/nfcorpus-beir/evaluations/hybrid-tuned.json",
+      "sha256": "716816a924f802e805e7645c4a6bc04469909810398a45544dae90b8fe269b77"
+    },
+    {
+      "bytes": 72638,
+      "path": "results/retrieval/nfcorpus-beir/evaluations/minilm.json",
+      "sha256": "2de6443cd957c38e099bfd27b862abfd71c1d706a5f11a33c8aed54a498a94cf"
+    },
+    {
+      "bytes": 19995,
+      "path": "results/retrieval/nfcorpus-beir/latency.json",
+      "sha256": "12612c227e436c5fc1691a32d11549114991a31dd171475d5a71ebcd42a41ade"
+    },
+    {
+      "bytes": 602,
+      "path": "results/retrieval/nfcorpus-beir/provenance.json",
+      "sha256": "2efaac3bee49168680d4e0736b5510b35590baf31b52c13f58730296bc584134"
+    },
+    {
+      "bytes": 1620419,
+      "path": "results/retrieval/nfcorpus-beir/runs/bm25-fixed.trec",
+      "sha256": "649f751d14ae074354455fc19e1472cf389544a34d96331d4ad4807bd00b758b"
+    },
+    {
+      "bytes": 1620765,
+      "path": "results/retrieval/nfcorpus-beir/runs/bm25-tuned.trec",
+      "sha256": "ea254e3196ceb66cc607e817fbdc6fabfaf42bdce74547e56287e0570eace5de"
+    },
+    {
+      "bytes": 1856706,
+      "path": "results/retrieval/nfcorpus-beir/runs/hybrid-tuned.trec",
+      "sha256": "735e2fffa8791607f2cfd666968dcf2f4447ef703ea231bf9ce5f1abcc3ab7f5"
+    },
+    {
+      "bytes": 1680204,
+      "path": "results/retrieval/nfcorpus-beir/runs/minilm.trec",
+      "sha256": "6032e467cd6ebe840113c1f45990c1fc16a409ff98e3008d10022d8c886e55f7"
+    },
+    {
+      "bytes": 1206,
+      "path": "results/retrieval/nfcorpus-beir/selected.json",
+      "sha256": "e77949ce766df80bc46f28f103e0254c0a097e5509b3a4f4e160bcba66991501"
+    },
+    {
+      "bytes": 11619,
+      "path": "results/retrieval/nfcorpus-beir/selection.json",
+      "sha256": "1afdf940f11f182814c6fa406b5c3c550d6efc67e9bb00c510175ead1557ec9d"
+    },
+    {
+      "bytes": 15290,
+      "path": "results/retrieval/nfcorpus-beir/tokenization.json",
+      "sha256": "bede59e3e65098338c72d12fba363c8083a35c995e4f43527b6b087b750d0989"
+    },
+    {
+      "bytes": 181191,
+      "path": "results/retrieval/nfcorpus-beir/tuning.json",
+      "sha256": "221f084f61f9ac9acd7327463ccd8cc8f1aba094439d5c314e5adbdcfa6c8a3d"
+    },
+    {
+      "bytes": 619,
+      "path": "results/retrieval/runtime.json",
+      "sha256": "ffdf4cd4010ac3e94c9d8a1d9ae081f6db9471492b4c1c4785be4ee9436ec009"
+    },
+    {
+      "bytes": 2650,
+      "path": "results/retrieval/squad-v1.1/crosscheck.json",
+      "sha256": "959fd75f0d863e5c8cb0f8f8375b658f918b4fa17394a61f12797edbfd53befb"
+    },
+    {
+      "bytes": 6127,
+      "path": "results/retrieval/squad-v1.1/dev-answers.json",
+      "sha256": "65ec63d987e82aae75843c62570ca42ded5c6edcfed81f761c7683128023488a"
+    },
+    {
+      "bytes": 2884,
+      "path": "results/retrieval/squad-v1.1/dev-qrels.json",
+      "sha256": "48a9d6546a93acc72ae7f7bfdca9c4a1e3259a4ad5ea5ed5fb173a57e7a6658d"
+    },
+    {
+      "bytes": 37608,
+      "path": "results/retrieval/squad-v1.1/dev-runs/bm25-k0.6-b0.5.trec",
+      "sha256": "ea5af3d4fa1c80a5888b6cb5537067855da054c68c5ef1f146a9752067d5f608"
+    },
+    {
+      "bytes": 36627,
+      "path": "results/retrieval/squad-v1.1/dev-runs/bm25-k0.6-b0.trec",
+      "sha256": "31cadbf3eb73b8f65e02a1f3304d9820c5a8376b703979924a992a0a6657052d"
+    },
+    {
+      "bytes": 36609,
+      "path": "results/retrieval/squad-v1.1/dev-runs/bm25-k0.6-b1.trec",
+      "sha256": "322fb54b0af6ac92febba89c72cc3a6544cafda8b45858299e79a431631856b2"
+    },
+    {
+      "bytes": 37603,
+      "path": "results/retrieval/squad-v1.1/dev-runs/bm25-k1.2-b0.5.trec",
+      "sha256": "ec81b28079256e8aa039c77327f8cd2232f8c92a50be1875d647166f12a9e1a0"
+    },
+    {
+      "bytes": 36625,
+      "path": "results/retrieval/squad-v1.1/dev-runs/bm25-k1.2-b0.trec",
+      "sha256": "63e951c25a4c49804cf08b7e3db3dc11fbbc02cbd8e609bbc823540c1bbc757e"
+    },
+    {
+      "bytes": 36597,
+      "path": "results/retrieval/squad-v1.1/dev-runs/bm25-k1.2-b1.trec",
+      "sha256": "bdd1506891f581727cf6dc0ef427987e8bc12b68d47b5a0072c7723d77652649"
+    },
+    {
+      "bytes": 37606,
+      "path": "results/retrieval/squad-v1.1/dev-runs/bm25-k1.8-b0.5.trec",
+      "sha256": "46b876587e3ba6cabe756a8b79c32f681b61deacedef92ec41f85402514c0807"
+    },
+    {
+      "bytes": 36604,
+      "path": "results/retrieval/squad-v1.1/dev-runs/bm25-k1.8-b0.trec",
+      "sha256": "58c7e16f4fcb8aa22f436f5e99848e98cc9c05db73f49c1bd5ce804c67b93e3c"
+    },
+    {
+      "bytes": 36586,
+      "path": "results/retrieval/squad-v1.1/dev-runs/bm25-k1.8-b1.trec",
+      "sha256": "0845836f0eef18945703ceba38f628009a3f4df99ad30998a7a08fb04e1af3eb"
+    },
+    {
+      "bytes": 37193,
+      "path": "results/retrieval/squad-v1.1/dev-runs/rrf-w0.25-c10.trec",
+      "sha256": "a86f34649f1066388ce30e7e88fcfa76655bb547d886424f2c92b706ca3c94c8"
+    },
+    {
+      "bytes": 38062,
+      "path": "results/retrieval/squad-v1.1/dev-runs/rrf-w0.25-c60.trec",
+      "sha256": "05ee36a2a86facda1e6f028860568af16990e0b217bb31c42698c2d1b025075c"
+    },
+    {
+      "bytes": 37232,
+      "path": "results/retrieval/squad-v1.1/dev-runs/rrf-w0.5-c10.trec",
+      "sha256": "5a5cacd7194bf39d4d488d899f2912fdd539e77bcd6f1507d99c287eb644e2a9"
+    },
+    {
+      "bytes": 37629,
+      "path": "results/retrieval/squad-v1.1/dev-runs/rrf-w0.5-c60.trec",
+      "sha256": "e8aabc3dbad2e1aff7b4f298b9369c0a892644b48e06bc02060a96d86329667f"
+    },
+    {
+      "bytes": 37053,
+      "path": "results/retrieval/squad-v1.1/dev-runs/rrf-w0.75-c10.trec",
+      "sha256": "45df4325d144689446531c4ec5ec9270b828f29d17b051f67df38b48e427b383"
+    },
+    {
+      "bytes": 38065,
+      "path": "results/retrieval/squad-v1.1/dev-runs/rrf-w0.75-c60.trec",
+      "sha256": "391a41ad219c7494f6d5e84b13c35de769c686c17acc57b8352035a0f89d52b3"
+    },
+    {
+      "bytes": 31712,
+      "path": "results/retrieval/squad-v1.1/diagnostics/bm25-fixed.json",
+      "sha256": "b67fbf6b263af7b4f50cb757323065128b1d4c083abb0e58671002d38c04ee11"
+    },
+    {
+      "bytes": 31709,
+      "path": "results/retrieval/squad-v1.1/diagnostics/bm25-tuned.json",
+      "sha256": "6d0063cc306c2cbd3396ccd0c609d64c7c5c793d4a7f2a0ea0e2e11b45619173"
+    },
+    {
+      "bytes": 31703,
+      "path": "results/retrieval/squad-v1.1/diagnostics/hybrid-tuned.json",
+      "sha256": "066e3b5fb0fba3410d509fe1c55778f431fdf6c4e3015a3c2b07848c63041ea5"
+    },
+    {
+      "bytes": 31713,
+      "path": "results/retrieval/squad-v1.1/diagnostics/minilm.json",
+      "sha256": "88b298eda993388d376ef7e4319427b2fccb768a8f7dbad821cb9eff375a37ed"
+    },
+    {
+      "bytes": 23315,
+      "path": "results/retrieval/squad-v1.1/eval-answers.json",
+      "sha256": "f0cd05ca10ebc12a571dd615b4a3a91815bd6662507ec46f6a914722b4e3b38f"
+    },
+    {
+      "bytes": 11473,
+      "path": "results/retrieval/squad-v1.1/eval-qrels.json",
+      "sha256": "744dd82dbe9ef9d96cd3468a3e993d7a1287ca23ebb9380b94a02070a2ebef08"
+    },
+    {
+      "bytes": 54615,
+      "path": "results/retrieval/squad-v1.1/evaluations/bm25-fixed.json",
+      "sha256": "89bd0c98d42e23783d3ac6309a16f25b64729e1a74d9a99df39765109f5777ac"
+    },
+    {
+      "bytes": 54514,
+      "path": "results/retrieval/squad-v1.1/evaluations/bm25-tuned.json",
+      "sha256": "6aac8c796710f77315158ed17984664a58c6bfda0a615fe9e7ff08bb674ed7ea"
+    },
+    {
+      "bytes": 54890,
+      "path": "results/retrieval/squad-v1.1/evaluations/hybrid-tuned.json",
+      "sha256": "4b4c418675fe571106ee8952301c615c24aa72327c8d31b52edae9b46b2d2067"
+    },
+    {
+      "bytes": 54976,
+      "path": "results/retrieval/squad-v1.1/evaluations/minilm.json",
+      "sha256": "97564f9fe3a54f54047f3115529e64172bcb29341a13eb2bafa6fe8534bd5aea"
+    },
+    {
+      "bytes": 23803,
+      "path": "results/retrieval/squad-v1.1/latency.json",
+      "sha256": "5201c8d5508cb6ecdb06da37850df97f32769180fd97e1c66340b5bef21a4343"
+    },
+    {
+      "bytes": 591,
+      "path": "results/retrieval/squad-v1.1/provenance.json",
+      "sha256": "c2b9730f7c199f3f2cc472635edf4aa12bae3f8e43137b6aeb09226d9c3c030d"
+    },
+    {
+      "bytes": 1436340,
+      "path": "results/retrieval/squad-v1.1/runs/bm25-fixed.trec",
+      "sha256": "f6b45c25da763840b0fd40f4400bd1f0355771450318040b00ee5081e00360ae"
+    },
+    {
+      "bytes": 1435294,
+      "path": "results/retrieval/squad-v1.1/runs/bm25-tuned.trec",
+      "sha256": "bfa8a8f513023044882a76770fcdbd8ff3696ab5aebad11fb48f3fe3ab3aba72"
+    },
+    {
+      "bytes": 1492150,
+      "path": "results/retrieval/squad-v1.1/runs/hybrid-tuned.trec",
+      "sha256": "fa9a913c6e8180f9c14f377c32f747761e7b335ff99fea2707874b06532c1176"
+    },
+    {
+      "bytes": 1377278,
+      "path": "results/retrieval/squad-v1.1/runs/minilm.trec",
+      "sha256": "a30cf7d943f886ae2e8f4d455e730886400f35a004b850a525a49b92dca3d547"
+    },
+    {
+      "bytes": 1215,
+      "path": "results/retrieval/squad-v1.1/selected.json",
+      "sha256": "8f52f2ca6e7cbc8919978cc37aed628df915b7be492ca15e2f01bb47accd8198"
+    },
+    {
+      "bytes": 21974,
+      "path": "results/retrieval/squad-v1.1/selection.json",
+      "sha256": "5f84550e5d535dfe62a57ff19cfa060d53785624b3cfb247b625263fd8457ebf"
+    },
+    {
+      "bytes": 10734,
+      "path": "results/retrieval/squad-v1.1/tokenization.json",
+      "sha256": "ad70886b313450e51d695db0db40e1f0f30df9010c4dbf1c29f807bccf2dfdfa"
+    },
+    {
+      "bytes": 39326,
+      "path": "results/retrieval/squad-v1.1/tuning.json",
+      "sha256": "5d558afee4ad924d8866b729b9919c72d1b7d371bb5719bc7a1893ab02401dc9"
+    }
+  ],
+  "schema_version": 1
+}
