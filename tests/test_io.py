@@ -51,3 +51,18 @@ def test_atomic_write_preserves_previous_output(tmp_path):
         write_json_atomic(path, {"v": float("nan")})
     assert path.read_text() == "original"
     assert list(tmp_path.iterdir()) == [path]
+
+
+def test_json_integer_precision_preserves_relevant_rank_or_rejects_score(tmp_path):
+    from ragbench.metrics import score_retrieval
+
+    path = tmp_path / "run.json"
+    refs = {"q": {"z": 1}}
+    # Both integers in each pair exceed 2**53. Only the even pair is exactly representable.
+    path.write_text('{"q":{"a":9007199254740996,"z":9007199254740997}}')
+    with pytest.raises(ValueError, match="exactly representable"):
+        score_retrieval(refs, read_run(path))
+    path.write_text('{"q":{"a":9007199254740996,"z":9007199254740998}}')
+    assert score_retrieval(refs, read_run(path))["q"]["mrr@10"] == 1.0
+    with pytest.raises(ValueError, match="exactly representable"):
+        score_retrieval(refs, {"q": {"a": 2**53, "z": 2**53 + 1}})

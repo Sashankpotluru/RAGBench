@@ -116,12 +116,13 @@ def validate_binding(binding, expected, runtime):
 
 
 def persist(folder: Path, identity, passages, origin):
-    if (folder / "input-binding.json").exists() or (folder / "retrieved-passages.json").exists():
-        raise FileExistsError("answer input archive already exists")
-    write_json_atomic(folder / "retrieved-passages.json", passages)
-    write_json_atomic(
-        folder / "input-binding.json", {"schema_version": 1, "origin": origin, "inputs": identity}
-    )
+    files = {
+        folder / "retrieved-passages.json": passages,
+        folder / "input-binding.json": {"schema_version": 1, "origin": origin, "inputs": identity},
+    }
+    # Check existing files first so a conflicting survivor never gains a new companion.
+    for path in sorted(files, key=lambda p: not (p.exists() or p.is_symlink())):
+        write_json_atomic(path, files[path], match_existing=True)
 
 
 def backfill(results: Path, cache: Path, evidence_commit: str):

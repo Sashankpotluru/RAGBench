@@ -135,23 +135,41 @@ def test_generation_stops_only_at_eos_or_length_limit():
                 audit_prediction(result, question, [], tokenizer)
 
 
-def test_runner_persists_binding_before_model_loading(tmp_path, monkeypatch):
+@pytest.mark.parametrize("failure", ["load", "prediction"])
+def test_runner_retains_failed_attempt_and_retries_with_exact_inventory(
+    tmp_path, monkeypatch, failure
+):
     from types import SimpleNamespace
 
     from benchmarks import run_answers as runner
+    from benchmarks.verify import check_coverage
     from ragbench.io import read_json
 
+    results = tmp_path / "reproduced-answers"
+    dest = results / "answers"
     machine = {"source_commit": "a" * 40}
     monkeypatch.setattr(runner, "runtime", lambda _: machine)
     monkeypatch.setattr(
         runner, "load_dataset", lambda *args: SimpleNamespace(eval_queries={"q": "Where?"})
     )
     monkeypatch.setattr(
-        runner, "source_inputs", lambda *args: ({"aliases_sha256": "b" * 64}, {}, {"d": "Answer."})
+        runner,
+        "source_inputs",
+        lambda *args: (
+            {"aliases_sha256": "b" * 64},
+            {system: {"q": ["d"]} for system in ["bm25-tuned", "hybrid-tuned"]},
+            {"d": "Answer."},
+        ),
     )
 
-    def stop_at_load(_):
-        bindings = list(tmp_path.glob("*/answers/input-binding.json"))
+    class FakeGenerator:
+        def predict(self, question, passages):
+            if failure == "prediction" and passages and question == "Where?":
+                raise RuntimeError("fixture prediction failure")
+            return {"prediction": "Here."}
+
+    def load_generator(_):
+        bindings = list(results.glob("*/answers/input-binding.json"))
         assert len(bindings) == 1
         binding = read_json(bindings[0])
         assert binding["origin"] == {
@@ -161,9 +179,127 @@ def test_runner_persists_binding_before_model_loading(tmp_path, monkeypatch):
         }
         assert binding["inputs"] == {"aliases_sha256": "b" * 64}
         assert read_json(bindings[0].with_name("retrieved-passages.json")) == {"d": "Answer."}
-        raise RuntimeError("fixture stop before inference")
+        if failure == "load":
+            raise RuntimeError("fixture load failure")
+        return FakeGenerator()
 
-    monkeypatch.setattr(runner, "Generator", stop_at_load)
-    with pytest.raises(RuntimeError, match="fixture stop"):
-        runner.run_answers(tmp_path / "answers", tmp_path / "retrieval", tmp_path / "cache")
-    assert not (tmp_path / "answers").exists()
+    monkeypatch.setattr(runner, "Generator", load_generator)
+    args = dest, results / "retrieval", tmp_path / "cache"
+    with pytest.raises(RuntimeError, match=f"fixture {failure} failure"):
+        runner.run_answers(*args)
+    assert not dest.exists()
+    archive = tmp_path / "reproduced-answers.answer-failures"
+    [record] = archive.glob("answers-*.json")
+    assert read_json(record) == {
+        "system": None if failure == "load" else "bm25-top1",
+        "query_id": None if failure == "load" else "q",
+        "error": "RuntimeError",
+        "message": f"fixture {failure} failure",
+        "complete": False,
+    }
+    saved = record.read_bytes()
+    # Older releases left this exact record beside the answer directory.
+    legacy = results / "answers-failure.json"
+    legacy.write_bytes(saved + b" ")
+    failure = None
+    runner.run_answers(*args)
+    assert record.read_bytes() == saved
+    assert not legacy.exists()
+    [archived_legacy] = set(archive.iterdir()) - {record}
+    assert archived_legacy.read_bytes() == saved + b" "
+    assert read_json(dest / "failures.json") == []
+    expected = {
+        "runtime.json",
+        "questions.json",
+        "protocol.json",
+        "input-binding.json",
+        "retrieved-passages.json",
+        "failures.json",
+        *(f"predictions/{system}.json" for system in runner.CONFIGS),
+    }
+    for system in runner.CONFIGS:
+        assert read_json(dest / "predictions" / f"{system}.json") == {"q": {"prediction": "Here."}}
+    inventory = {str((dest / name).relative_to(tmp_path)) for name in expected}
+    check_coverage(tmp_path, results, inventory)
+    (results / "extra.json").write_text("{}")
+    with pytest.raises(ValueError, match="results file coverage"):
+        check_coverage(tmp_path, results, inventory)
+
+
+def test_runner_leaves_unrecognized_sidecar_intact(tmp_path):
+    from benchmarks.run_answers import run_answers
+
+    results = tmp_path / "release"
+    results.mkdir()
+    sidecar = results / "answers-failure.json"
+    sidecar.write_text('{"my_notes":"keep"}')
+    with pytest.raises(ValueError, match="unrecognized"):
+        run_answers(results / "answers", results / "retrieval", tmp_path / "cache")
+    assert sidecar.read_text() == '{"my_notes":"keep"}'
+    assert list(results.iterdir()) == [sidecar]
+
+
+def test_failure_archives_for_standalone_and_unwritable_release_parent(tmp_path, monkeypatch):
+    from pathlib import Path
+
+    from benchmarks.run_answers import archive_failure
+    from ragbench.io import read_json
+
+    monkeypatch.setattr(Path, "home", lambda: tmp_path / "home")
+    record = {
+        "system": None,
+        "query_id": None,
+        "error": "RuntimeError",
+        "message": "fixture",
+        "complete": False,
+    }
+    direct = tmp_path / "scratch" / "my-answers"
+    direct.parent.mkdir()
+    first = archive_failure(direct, record)
+    second = archive_failure(direct, record)
+    assert first != second
+    assert first.parent == second.parent == direct.with_suffix(".answer-failures")
+    assert read_json(first) == read_json(second) == record
+
+    # An existing regular file prevents using the preferred directory, independently of UID.
+    (tmp_path / "release.answer-failures").write_text("preserve")
+    fallback = archive_failure(tmp_path / "release" / "answers", record)
+    assert fallback.parent == tmp_path / "home" / ".ragbench" / "answer-failures"
+    assert read_json(fallback) == record
+    assert (tmp_path / "release.answer-failures").read_text() == "preserve"
+
+
+def test_unwritable_archives_report_diagnostic_and_preserve_generator_exception(
+    tmp_path, monkeypatch, capsys
+):
+    import json
+    from pathlib import Path
+    from types import SimpleNamespace
+
+    from benchmarks import run_answers as runner
+
+    (tmp_path / "release.answer-failures").touch()
+    (tmp_path / ".ragbench").touch()
+    monkeypatch.setattr(Path, "home", lambda: tmp_path)
+    monkeypatch.setattr(runner, "runtime", lambda _: {"source_commit": "a" * 40})
+    monkeypatch.setattr(runner, "load_dataset", lambda *_: SimpleNamespace(eval_queries={}))
+    monkeypatch.setattr(runner, "source_inputs", lambda *_: ({}, {}, {}))
+    error = RuntimeError("authored fixture load failure")
+
+    def fail(_):
+        raise error
+
+    monkeypatch.setattr(runner, "Generator", fail)
+    dest = tmp_path / "release" / "answers"
+    with pytest.raises(RuntimeError) as caught:
+        runner.run_answers(dest, tmp_path / "retrieval", tmp_path / "cache")
+    assert caught.value is error and not dest.exists()
+    message, record = capsys.readouterr().err.strip().splitlines()
+    assert "no writable failure archive" in message
+    assert json.loads(record) == {
+        "system": None,
+        "query_id": None,
+        "error": "RuntimeError",
+        "message": "authored fixture load failure",
+        "complete": False,
+    }

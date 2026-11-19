@@ -9,6 +9,7 @@ build/
 dist/
 site/
 data/cache/
+*.answer-failures/
 .superpowers/
 .demo-session/
 .env

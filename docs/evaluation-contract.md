@@ -9,7 +9,7 @@ Each input file must be UTF-8 and at most 64 MiB (67,108,864 bytes). Query, docu
 | Input | Representation |
 | --- | --- |
 | Retrieval references | JSON object mapping query ID to document ID to nonnegative integer grade. Also accepts the BEIR header `query-id corpus-id score` and three columns, or four TREC columns `qid iteration docid grade`. Each reference query needs at least one judgment. |
-| Retrieval predictions | JSON object mapping query ID to document ID to finite score, or six TREC columns `qid iteration docid rank score tag`. Rank must be a positive integer. Ranking uses descending score and then ascending document ID. The iteration and tag fields carry no scoring information. |
+| Retrieval predictions | JSON object mapping query ID to document ID to finite score, or six TREC columns `qid iteration docid rank score tag`. JSON integer scores must be exactly representable in IEEE 754 binary64. JSON scores with a decimal point or exponent and TREC score fields are read at binary64 precision. Rank must be a positive integer. Ranking uses descending score and then ascending document ID. The iteration and tag fields carry no scoring information. |
 | Answer references | JSON object mapping query ID to a nonempty list of strings. An empty string can be an accepted alias. |
 | Answer predictions | JSON object mapping query ID to one answer string. |
 | Groups | Optional JSON object mapping every reference query ID to one nonblank group ID. Supply article IDs for SQuAD and omit groups for query-level NFCorpus sampling. |

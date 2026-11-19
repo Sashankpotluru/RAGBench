@@ -62,7 +62,8 @@ def read_json(path: Path) -> Any:
     return _parse_json(_read_text(path))
 
 
-def write_json_atomic(path: Path, data: Any) -> None:
+def write_json_atomic(path: Path, data: Any, *, match_existing: bool = False) -> None:
+    """Publish complete bytes, optionally requiring a pre-existing file to match exactly."""
     validate_json(data)
     encoded = (json.dumps(data, sort_keys=True, allow_nan=False, indent=2) + "\n").encode()
     temporary = None
@@ -70,7 +71,14 @@ def write_json_atomic(path: Path, data: Any) -> None:
         with NamedTemporaryFile(dir=path.parent, delete=False) as handle:
             temporary = Path(handle.name)
             handle.write(encoded)
-        os.replace(temporary, path)
+        if match_existing:
+            try:
+                os.link(temporary, path)
+            except FileExistsError:
+                if path.is_symlink() or not path.is_file() or path.read_bytes() != encoded:
+                    raise FileExistsError(f"conflicting content at {path}") from None
+        else:
+            os.replace(temporary, path)
     finally:
         if temporary is not None:
             temporary.unlink(missing_ok=True)
@@ -101,7 +109,10 @@ def _grade(value: Any) -> int:
 
 
 def _score(value: Any) -> float:
-    return finite_number(value, "run score")
+    score = finite_number(value, "run score")
+    if isinstance(value, int) and value != score:
+        raise ValueError("integer run score must be exactly representable in binary64")
+    return score
 
 
 def _numeric_rows[T](

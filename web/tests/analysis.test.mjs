@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { comparison, gate, number, points, queryRows, resetView } from "../analysis.mjs";
-import { answerDetail } from "../app.mjs";
+import { answerDetail, renderComparison } from "../app.mjs";
 
 const read = (file) => JSON.parse(readFileSync(new URL("../../" + file, import.meta.url)));
 const release = read("results/release.json");
@@ -111,6 +111,40 @@ test("generated output and excerpt markup remain literal text nodes", () => {
       nodes.some((n) => n.tag === "img"),
       false,
     );
+  } finally {
+    delete globalThis.document;
+  }
+});
+
+test("a missing comparison clears the previous verdict, styling, note, and interval", () => {
+  class Element {
+    children = [];
+    dataset = {};
+    textContent = "";
+    append(...nodes) { this.children.push(...nodes); }
+    replaceChildren(...nodes) { this.children = nodes; }
+    setAttribute(key, value) { this[key] = value; }
+  }
+  const nodes = Object.fromEntries(
+    ["effect", "inference", "verdict", "gate-note"].map((id) => [id, new Element()]),
+  );
+  globalThis.document = {
+    getElementById: (id) => nodes[id],
+    createElement: () => new Element(),
+    createElementNS: () => new Element(),
+  };
+  try {
+    renderComparison(comparison(answers, "hybrid-top3", "closed-book", "token_f1", 0.02));
+    assert.equal(nodes.verdict.dataset.gate, "regression");
+    assert.match(nodes["gate-note"].textContent, /upper bound/);
+    renderComparison(comparison([], "hybrid-top3", "closed-book", "token_f1", 0.02));
+    assert.equal(nodes.verdict.textContent, "Unavailable");
+    assert.equal(Object.hasOwn(nodes.verdict.dataset, "gate"), false);
+    assert.equal(nodes["gate-note"].textContent, "");
+    assert.equal(nodes.inference.children.length, 0);
+    assert.deepEqual(nodes.effect.children.map((child) => child.textContent), [
+      "No comparison was recorded for this system pair and metric.",
+    ]);
   } finally {
     delete globalThis.document;
   }

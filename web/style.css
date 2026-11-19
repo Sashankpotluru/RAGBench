@@ -338,6 +338,8 @@ figcaption,
   font-weight: 650;
   padding: 0.18rem 0.55rem;
   border-radius: 3px;
+}
+#verdict[data-gate="pass"] {
   background: var(--tint);
   color: #134e42;
 }

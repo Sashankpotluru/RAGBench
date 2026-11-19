@@ -160,3 +160,32 @@ def test_runtime_rejects_missing_fields_wrong_types_and_settings():
     ]:
         with pytest.raises(ValueError):
             runtime_check({**machine, key: replacement})
+
+
+@pytest.mark.parametrize("existing", ["retrieved-passages.json", "input-binding.json"])
+def test_resume_partial_input_archive_validates_before_filling_companion(tmp_path, existing):
+    from benchmarks.answer_inputs import persist
+
+    args = (
+        {"questions_sha256": "a" * 64},
+        {"p": "A blue gate."},
+        {"stage": "retrospective_source_verification", "binding_source_commit": "b" * 40},
+    )
+    persist(tmp_path, *args)
+    first = tmp_path / existing
+    companion = next(p for p in tmp_path.iterdir() if p != first)
+    original = first.read_bytes()
+    companion_bytes = companion.read_bytes()
+    companion.unlink()
+    first.write_bytes(original + b" ")
+    with pytest.raises(FileExistsError, match=existing):
+        persist(tmp_path, *args)
+    assert first.read_bytes() == original + b" "
+    assert not companion.exists()
+
+    first.write_bytes(original)
+    inode = first.stat().st_ino
+    persist(tmp_path, *args)
+    assert first.stat().st_ino == inode and first.read_bytes() == original
+    assert companion.read_bytes() == companion_bytes
+    persist(tmp_path, *args)

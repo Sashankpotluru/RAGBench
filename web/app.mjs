@@ -126,11 +126,16 @@ function intervalPlot(r) {
 function renderEffect() {
   const rows = families[state.dataset][state.kind];
   const r = comparison(rows, state.baseline, state.candidate, state.metric, state.margin);
+  renderComparison(r);
+}
+export function renderComparison(r) {
   $("effect").replaceChildren();
   $("inference").replaceChildren();
-  $("verdict").textContent = "";
   if (!r) {
-    $("effect").append(el("p", "Choose two distinct recorded systems with a shared metric.", "empty"));
+    $("verdict").textContent = "Unavailable";
+    delete $("verdict").dataset.gate;
+    $("gate-note").textContent = "";
+    $("effect").append(el("p", "No comparison was recorded for this system pair and metric.", "empty"));
     return;
   }
   const group = el("div", undefined, "effect-grid");
